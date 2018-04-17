@@ -1,5 +1,4 @@
-
-[![Waffle.io - Issues in progress](https://badge.waffle.io/ShSukkar/GreenField.png?label=in%20progress&title=In%20Progress)](http://waffle.io/ShSukkar/GreenField)
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/ShSukkar/GreenField.svg?columns=all)](https://waffle.io/ShSukkar/GreenField)
 # GreenField #
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
