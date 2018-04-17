@@ -42,3 +42,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+
+
+
+[![Waffle.io - Issues in progress](https://badge.waffle.io/ShSukkar/GreenField.png?label=in%20progress&title=In%20Progress)](http://waffle.io/ShSukkar/GreenField)
