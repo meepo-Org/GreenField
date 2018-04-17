@@ -45,4 +45,7 @@ Once the project moves into development, the press release can be used as a touc
 
 
 
-[![Waffle.io - Issues in progress](https://badge.waffle.io/ShSukkar/GreenField.png?label=in%20progress&title=In%20Progress)](http://waffle.io/ShSukkar/GreenField)
+customize
+You can customize your badge by picking which columns to include. In the URL, remove the 'all' after 'columns=' and replace it with the names of your desired columns, separated by commas. If your column includes a space, replace the space with '%20'. For example,to only show 'In Progress' and 'Done', the url would be: 'https://badge.waffle.io/ShSukkar/GreenField.svg?columns=In%20Progress,Done' 
+
+Change badge style by adding '&style=flat-square' to the end, other options are 'plastic' and the default 'flat'.
