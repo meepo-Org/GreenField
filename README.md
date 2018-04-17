@@ -46,7 +46,3 @@ Once the project moves into development, the press release can be used as a touc
 
 
 [![Waffle.io - Issues in progress](https://badge.waffle.io/ShSukkar/GreenField.png?label=in%20progress&title=In%20Progress)](http://waffle.io/ShSukkar/GreenField)
-
-.. image:: https://badge.waffle.io/ShSukkar/GreenField.png?label=in%20progress&title=In%20Progress 
- :target: https://waffle.io/ShSukkar/GreenField 
- :alt: 'Waffle.io - Issues in progress'
