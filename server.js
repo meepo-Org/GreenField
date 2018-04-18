@@ -23,6 +23,6 @@ app.get('/user', function (req , res) {
 })
 
 var port = 1596
-app.listen(port , function () {
+app.listen(process.env.PORT || port , function () {
 console.log("server is listening "+ port +" Port")
 })
