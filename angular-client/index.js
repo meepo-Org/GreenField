@@ -4,7 +4,7 @@ app.controller('myctrl' , function ($scope,$http) {
 	//Ajax
 
 	$scope.done = function () {
-			var post = {
+	var post = {
 		method :'POST',
 		url : '/user',
 		data :{
