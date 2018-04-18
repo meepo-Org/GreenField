@@ -18,7 +18,7 @@ var save = function (data , callback) {
 	var user = new User(data);
 	user.save(function (err , elem) {
 		if(err){callback(err, null)}
-			callback(null , elem)
+			callback(null ,elem)
 	})
 }
 
