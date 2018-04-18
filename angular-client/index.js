@@ -1,9 +1,9 @@
 var app = angular.module('meepo' , []);
 
 app.controller('myctrl' , function ($scope,$http) {
-	//Ajax
-
 	$scope.done = function () {
+	//Ajax
+	console.log($scope)
 	var post = {
 		method :'POST',
 		url : '/user',
@@ -16,6 +16,15 @@ app.controller('myctrl' , function ($scope,$http) {
 	},function () {
 		console.log('error')
 	})
-	}
 
+	var get={
+		method:"GET",
+		url : '/user'
+	}
+	$http(get).then(function (data) {
+		$scope.getter = data.data
+	},function () {
+		console.log('error')
+	})
+	}
 })
