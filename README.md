@@ -1,5 +1,5 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/meepo-Org/GreenField.svg?columns=all)](https://waffle.io/meepo-Org/GreenField)
 # GreenField #
-
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -42,5 +42,3 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
-
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/ShSukkar/GreenField.svg?columns=all)](https://waffle.io/ShSukkar/GreenField)
