@@ -9,15 +9,13 @@ app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser())
 
 app.post('/user',function(req , res){
-console.log(req.body.user)
-db.save(req.body , function (err , data) {
-	if(err){res.send(err)}
+	db.save(req.body , function (err , data) {
+		if(err){res.send(err)}
 		res.send(data)
-})
+	})
 })
 
 app.get('/user', function (req , res) {
-	//console.log(db.User)
 	db.User.find(function (err, data) {
 		if(err){res.send(err)}
 		res.send(data)
