@@ -10,6 +10,10 @@ app.use(bodyParser())
 
 app.post('/user',function(req , res){
 console.log(req.body)
+db.save(req.body , function (err , data) {
+	if(err){res.send(err)}
+		res.send(data)
+})
 })
 
 var port = 1596

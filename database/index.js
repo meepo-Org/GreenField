@@ -14,4 +14,14 @@ var userSchema = mongoose.Schema({
 
 var User = mongoose.model("User" , userSchema);
 
-module.exports.db = db;
+var save = function (data , callback) {
+	var user = new User(data);
+	user.save(function (err , elem) {
+		if(err){callback(err, null)}
+			callback(null , elem)
+	})
+}
+
+
+module.exports.save = save;
+module.exports.User = User;
