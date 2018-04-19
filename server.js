@@ -14,12 +14,13 @@ app.post('/user',function(req , res){
 		res.send(data)
 	})
 })
- 
+  
 app.get('/user', function (req , res) {
 	db.User.find(function (err, data) {
 		if(err){res.send(err)}
 		res.send(data)
 	})
+	// res.redirect('./templates/login.html');
 })
 
 var port = 1596
