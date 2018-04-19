@@ -1,36 +1,39 @@
 var app = angular.module('meepo' , []);
 
 app.controller('myctrl' , function ($scope,$http) {
+  var get = function () {
 	var get={
 		method:"GET",
 		url : '/user'
 	}
-	$scope.done = function () {
-	//Ajax
+		$http(get).then(function (data) {
+			$scope.getter = data.data
+		},function () {
+			console.log('error')
+		})
+ }
+ var post = function (data) {
 	var post = {
 		method :'POST',
 		url : '/user',
-		data :{
-			username : $scope.name ,
-			password : $scope.password , 
-			email : $scope.email
-		}
+		data : data
 	}
 	$http(post).then(function () {
 		console.log('success')
 	},function () {
 		console.log('error')
 	})
-	$http(get).then(function (data) {
-		$scope.getter = data.data
-	},function () {
-		console.log('error')
-	})
+ 	
+ }
+ 	get()
+ 	
+	$scope.done = function () {
+	//Ajax
+	post({
+			username : $scope.name ,
+			password : $scope.password , 
+			email : $scope.email
+		})
+	get()
 	}
-
-		$http(get).then(function (data) {
-		$scope.getter = data.data
-	},function () {
-		console.log('error')
-	})
 })
