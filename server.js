@@ -7,6 +7,7 @@ let app = express();
 
 app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser())
+
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err){res.send(err)}
@@ -22,6 +23,6 @@ app.get('/user', function (req , res) {
 })
 
 var port = 1596
-app.listen(port , function () {
+app.listen(process.env.PORT || port , function () {
 console.log("server is listening "+ port +" Port")
 })
