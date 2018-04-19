@@ -1,7 +1,7 @@
 var app = angular.module('meepo' , ["ngRoute"]);
 
 app.controller('signup' , function ($scope,$http ) {
-  var get = function (url) {
+  var get = function () {
 	var get={
 		method:"GET",
 		url : '/user'
@@ -39,7 +39,7 @@ app.controller('signup' , function ($scope,$http ) {
 })
 
 app.controller('login' , function ($scope,$http ) {
-	var get = function (url) {
+	var get = function () {
 	var get={
 		method:"GET",
 		url : '/login'
