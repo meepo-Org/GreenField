@@ -1,7 +1,7 @@
-var app = angular.module('meepo' , []);
+var app = angular.module('meepo' , ["ngRoute"]);
 
-app.controller('myctrl' , function ($scope,$http) {
-  var get = function () {
+app.controller('signup' , function ($scope,$http ) {
+  var get = function (url) {
 	var get={
 		method:"GET",
 		url : '/user'
@@ -26,7 +26,7 @@ app.controller('myctrl' , function ($scope,$http) {
  	
  }
  	get()
- 	
+
 	$scope.done = function () {
 	//Ajax
 	post({
@@ -37,3 +37,44 @@ app.controller('myctrl' , function ($scope,$http) {
 	get()
 	}
 })
+
+app.controller('login' , function ($scope,$http ) {
+	var get = function (url) {
+	var get={
+		method:"GET",
+		url : '/login'
+	}
+		$http(get).then(function (data) {
+			$scope.getter = data.data
+		},function () {
+			console.log('error')
+		})
+ }
+ var post = function (data) {
+	var post = {
+		method :'POST',
+		url : '/login',
+		data : data
+	}
+	$http(post).then(function () {
+		console.log('success')
+	},function () {
+		console.log('error')
+	})
+ 	
+ }
+	$scope.login = function () {
+		post({
+			username : $scope.nameLog ,
+			password : $scope.passwordLog 
+		})
+	}
+})
+
+
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/user", {
+        templateUrl : "templates/login.html"
+		})
+ })

@@ -1,11 +1,13 @@
-<h1>Hello World</h1>
-<div class="col-xs-3" ng-controller='myctrl'>
+	<div ng-view></div>
+<h1>SignUp</h1>
+<div class="col-xs-3" ng-controller='signup'>
 	<h3>UserName</h3>
 <input name="text" class="form-control" ng-model="name">
 	<h3>Email</h3>
 <input name="text" class="form-control" ng-model="email">
 	<h3>Password</h3>
 <input type="password" class="form-control" ng-model="password">
+	<a href="#!user">LoginPage</a>
 <button class="btn btn-primary" ng-click="done()">Add</button>
 <div ng-repeat='gg in getter'>
 	<h2>{{gg}}</h2>
