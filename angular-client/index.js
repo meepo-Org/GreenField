@@ -74,7 +74,7 @@ app.controller('project' , function ($scope,$http ) {
 	var get = function () {
 	var get={
 		method:"GET",
-		url : '/login'
+		url : '/project'
 	}
 		$http(get).then(function (data) {
 			$scope.getter = data.data
@@ -85,7 +85,7 @@ app.controller('project' , function ($scope,$http ) {
  var post = function (data) {
 	var post = {
 		method :'POST',
-		url : '/login',
+		url : '/project',
 		data : data
 	}
 	$http(post).then(function () {
