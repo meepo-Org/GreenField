@@ -8,11 +8,21 @@ db.on('error' , function(){
 db.once('open' , function () {
 	console.log("mongoose conncted !")
 })
+
+var projectSchama = mongoose.Schema({
+	projectName : String , 
+	projectDisc : String
+})
+
 var userSchema = mongoose.Schema({
-	user :String
+	username :{type : String  , required : true , index : {unique:true} },
+	password : {type : String  , required : true } , 
+	email : {type : String  , required : true }, 
+	project  :[projectSchama]
 })
 
 var User = mongoose.model("User" , userSchema);
+var Project = mongoose.model("Project" , projectSchama);
 
 var save = function (data , callback) {
 	var user = new User(data);
@@ -25,3 +35,4 @@ var save = function (data , callback) {
 
 module.exports.save = save;
 module.exports.User = User;
+module.exports.Project = Project;
