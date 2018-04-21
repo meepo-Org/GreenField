@@ -85,7 +85,7 @@ app.controller('project' , function ($scope,$http ) {
  var post = function (data) {
 	var post = {
 		method :'POST',
-		url : '/project',
+		url : '/user',
 		data : data
 	}
 	$http(post).then(function () {
@@ -96,7 +96,11 @@ app.controller('project' , function ($scope,$http ) {
  	
  }
  $scope.addproject = function () {
- 	console.log($scope.projectName)
+ 	post({
+ 		project : {
+ 			projectName  : $scope.projectName
+ 		}
+ 	})
  }
 })
 
