@@ -13,7 +13,7 @@ app.post('/user',function(req , res){
 		if(err){res.send(err)}
 		res.send(data)
 	})
-	// res.redirect('./templates/login.html');
+	
 })
   
 app.get('/user', function (req , res) {

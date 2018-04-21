@@ -1,12 +1,15 @@
 var app = angular.module('meepo' , ["ngRoute"]);
 
-app.controller('signup' , function ($scope,$http ) {
-  var get = function () {
-	var get={
+app.controller('signup' , function ($scope,$http ) 
+{
+  var get = function () 
+  {
+	var get = {
 		method:"GET",
 		url : '/user'
 	}
-		$http(get).then(function (data) {
+		$http(get).then(function (data) 
+		{
 			$scope.getter = data.data
 		},function () {
 			console.log('error')
