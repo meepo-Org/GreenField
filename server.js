@@ -13,6 +13,7 @@ app.post('/user',function(req , res){
 		if(err){res.send(err)}
 		res.send(data)
 	})
+	
 })
   
 app.get('/user', function (req , res) {
@@ -20,8 +21,15 @@ app.get('/user', function (req , res) {
 		if(err){res.send(err)}
 		res.send(data)
 	})
-	// res.redirect('./templates/login.html');
 })
+
+app.post('/project',function(req , res){
+	db.save(req.body , function (err , data) {
+		if(err){res.send(err)}
+		res.send(data)
+	})
+})
+  
 
 var port = 1596
 app.listen(process.env.PORT || port , function () {
