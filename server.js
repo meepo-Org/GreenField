@@ -22,7 +22,15 @@ app.get('/user', function (req , res) {
 	})
 	// res.redirect('./templates/login.html');
 })
-
+// Abdulhameed
+app.get('/login', function (req , res) {
+	db.User.find(function (err, data) {
+		if(err){res.send(err)}
+		res.send(data)
+	})
+	// res.redirect('./templates/login.html');
+})
+//=======================
 var port = 1596
 app.listen(process.env.PORT || port , function () {
 console.log("server is listening "+ port +" Port")

@@ -7,7 +7,9 @@ app.controller('signup' , function ($scope,$http ) {
 		url : '/user'
 	}
 		$http(get).then(function (data) {
+			console.log($scope.getter);
 			$scope.getter = data.data
+			console.log($scope.getter);
 		},function () {
 			console.log('error')
 		})
@@ -36,6 +38,11 @@ app.controller('signup' , function ($scope,$http ) {
 		})
 	get()
 	}
+	//abdulhameed transfare to login page
+	$scope.log = function () {
+
+	}
+	//=======
 })
 
 app.controller('login' , function ($scope,$http ) {
