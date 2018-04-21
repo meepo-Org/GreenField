@@ -1,19 +1,20 @@
 var app = angular.module('meepo' , ["ngRoute"]);
 
-app.controller('signup' , function ($scope,$http ) 
+app.controller('signup', function($scope, $http) 
 {
   var get = function () 
   {
 	var get = {
 		method:"GET",
 		url : '/user'
-	}
-		$http(get).then(function (data) 
-		{
-			$scope.getter = data.data
-		},function () {
-			console.log('error')
-		})
+	};
+
+	$http(get).then(function (data) 
+	{
+		$scope.getter = data.data
+	},function () {
+		console.log('error')
+	})
  }
  var post = function (data) {
 	var post = {
@@ -32,6 +33,7 @@ app.controller('signup' , function ($scope,$http )
 
 	$scope.done = function () {
 	//Ajax
+	console.log($scope.name);
 	post({
 			username : $scope.name ,
 			password : $scope.password , 
