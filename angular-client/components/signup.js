@@ -41,9 +41,11 @@ app.controller('signup' , function ($scope,$http ) {
 		})
 	get()
 	}
+
 	//abdulhameed transfare to login page
 	$scope.log = function () {
 
 	}
 	//=======
 })
+

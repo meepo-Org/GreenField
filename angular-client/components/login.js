@@ -1,5 +1,6 @@
 var app = angular.module('meepo')
-.component('login', {
+
+app.component('login', {
 	templateUrl :'/templates/login.html'
 });
 
