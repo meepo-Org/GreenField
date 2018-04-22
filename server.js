@@ -43,7 +43,16 @@ app.post('/project',function(req , res){
 		}
 		res.send(data);
 	})
-})
+});
+
+app.get('/project', function(req,res){
+	db.Project.find({} ,function(err,data){
+		if(err){
+			res.send(err)
+		}
+		res.send(data)
+	});
+});
 
 //Routes for Tasks :)
 app.get('/tasks', function(req, res)
