@@ -54,6 +54,16 @@ var addTask = function(data, callback)
 	});
 }
 
+var addProject = function(data, callback)
+{
+	var project = new Project(data);
+	project.save(function(err,elem){
+		if(err){
+			callback(err,null)
+		}
+		callback(null,elem)
+	});
+}
 
 
 
@@ -62,3 +72,4 @@ module.exports.User = User;
 module.exports.Project = Project;
 module.exports.Task = Task;
 module.exports.addTask = addTask;
+module.exports.addProject = addProject;

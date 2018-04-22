@@ -23,10 +23,14 @@ app.get('/user', function (req , res) {
 	})
 })
 
+//Rpotes for projects
 app.post('/project',function(req , res){
-	db.save(req.body , function (err , data) {
-		if(err){res.send(err)}
-		res.send(data)
+	db.addProject(req.body , function (err , data) {
+		if(err)
+		{
+			res.send(err)
+		}
+		res.send(data);
 	})
 })
 
