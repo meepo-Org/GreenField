@@ -1,7 +1,7 @@
-let express = require('express');
-let bodyParser = require('body-parser')
-let path = require('path');
-let db = require('./database/index.js')
+const express = require('express');
+const bodyParser = require('body-parser')
+const path = require('path');
+const db = require('./database/index.js')
 
 let app = express();
 
