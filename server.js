@@ -22,6 +22,10 @@ app.get('/user', function (req , res) {
 		res.send(data)
 	})
 })
+
+
+//Rpotes for projects
+
 // Abdulhameed
 app.get('/login', function (req , res) {
 	db.User.find(function (err, data) {
@@ -30,10 +34,14 @@ app.get('/login', function (req , res) {
 	})
 	// res.redirect('./templates/login.html');
 })
+
 app.post('/project',function(req , res){
-	db.save(req.body , function (err , data) {
-		if(err){res.send(err)}
-		res.send(data)
+	db.addProject(req.body , function (err , data) {
+		if(err)
+		{
+			res.send(err)
+		}
+		res.send(data);
 	})
 })
 
