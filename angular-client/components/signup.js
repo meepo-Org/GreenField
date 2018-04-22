@@ -1,20 +1,18 @@
 var app = angular.module('meepo')
-
-app.component('signup', {
+.component('signup', {
 	templateUrl :'/templates/signup.html'
 });
 
-app.controller('signup' , function ($scope,$http ) 
-{
-  var get = function () 
-  {
-	var get = {
+app.controller('signup' , function ($scope,$http ) {
+  var get = function () {
+	var get={
 		method:"GET",
 		url : '/user'
 	}
-		$http(get).then(function (data) 
-		{
+		$http(get).then(function (data) {
+			console.log($scope.getter);
 			$scope.getter = data.data
+			console.log($scope.getter);
 		},function () {
 			console.log('error')
 		})
@@ -43,4 +41,11 @@ app.controller('signup' , function ($scope,$http )
 		})
 	get()
 	}
+
+	//abdulhameed transfare to login page
+	$scope.log = function () {
+
+	}
+	//=======
 })
+
