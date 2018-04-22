@@ -1,15 +1,32 @@
-	<div ng-view></div>
-<h1>SignUp</h1>
-<div class="col-xs-3" ng-controller='signup'>
-	<h3>UserName</h3>
-<input name="text" class="form-control" ng-model="name">
-	<h3>Email</h3>
-<input name="text" class="form-control" ng-model="email">
-	<h3>Password</h3>
-<input type="password" class="form-control" ng-model="password">
-	<a href="#!user">LoginPage</a>
-<button class="btn btn-primary" ng-click="done()">Add</button>
-<div ng-repeat='gg in getter'>
-	<h2>{{gg}}</h2>
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #766C6A;
+    height: 50px;
+    font-size: 30px;
+}
+.signup {
+	background-color: #ECF0F1;
+}
+</style>
+<h1>Welcome</h1>
+<div class="col-md-3" ng-controller='app'>
+	<div class="signup">
+		<h3>hey are intersted in save your task and manage your projects </h3>
+	</div>
 </div>
+	<div class="col-md-3 signup">
+		<h3>Please Signup if want to start the adventure </h3>
+		<button class="btn">signup </button>
+		<h3>And if you have account you could simply login here</h3>
+		<button class="btn">login</button>
+	</div>
+	<div class='footer'>
+	<footer class="container-fluid text-center">
+  <p> Copyright</p>  
+</footer>
 </div>
