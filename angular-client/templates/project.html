@@ -1,41 +1,16 @@
-<h1>add project</h1>
-<style>
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background-color: #DBEDF3;
-  height: 50px;
-  font-size: 30px;
-}
-.signup {
-	background-color: #ECF0F1;
-}
-</style>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
 <div class="col-xs-3" ng-controller='project'>
-  <input name="project-name" class="form-control" ng-model="projectName">
-  <button class="btn btn-primary" ng-click="addproject()">add</button>
+<h3>add project</h3>
+<input name="project-name" class="form-control" ng-model="projectName">
+<h3>add description</h3>
+<input name="project-desc" class="form-control" ng-model="projectDesc">
+<br></br>
+<button class="btn btn-primary" ng-click="addproject()">add</button>
+
+
+
+<div ng-repeat = "project in getter">
+	<h3>{{project.projectName}}</h3>
+	<h4>{{project.projectDisc}}</h4>
 </div>
-<div class='footer'>
-	<footer class="container-fluid text-center">
-    <p> Copyright</p>  
-  </footer>
+
 </div>
