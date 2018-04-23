@@ -23,7 +23,8 @@ app.controller('login' , function ($scope,$http,$window ) {
 		data : data
 	}
 	$http(requestData).then(function () {
-	  $window.location.href = 'app2.html'
+
+	  $window.location.href = '#!/project'
 	},function () {
 	  console.log('error')
 	})
@@ -32,7 +33,8 @@ app.controller('login' , function ($scope,$http,$window ) {
 	  post({
 		username : $scope.nameLog ,
 		password : $scope.passwordLog 
-	  })
-	 ; 
+	  });
+	  	$scope.logoutVisible = true;
+		$scope.IsVisible = false ;
  	}
 })
