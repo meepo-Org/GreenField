@@ -14,4 +14,7 @@ app.config(function($routeProvider) {
     .when('logout',{
     	templateUrl:"templates/app.html"
     })
+    .when('/project',{
+        templateUrl:"templates/project.html"
+    })
 })

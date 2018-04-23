@@ -10,6 +10,10 @@ app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}))
 
+app.get('/',function (req , res) {
+	res.send('hhhh')
+})
+
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err) {
@@ -45,7 +49,7 @@ app.post('/login', function (req , res) {
 
 		res.sendStatus(200)
 		}
-		res.sendStatus(200)
+		// res.sendStatus(200)
 	})
 })
 app.get('/logout',function(req,res){
