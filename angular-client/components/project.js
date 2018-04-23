@@ -19,21 +19,26 @@ app.controller('project' , function ($scope,$http ) {
  var post = function (data) {
 	var post = {
 		method :'POST',
-		url : '/user',
+		url : '/project',
 		data : data
 	}
 	$http(post).then(function () {
-		console.log('success')
+		console.log('success');
 	},function () {
-		console.log('error')
+		console.log('error');
 	})
  	
  }
+ get();
  $scope.addproject = function () {
+ 	console.log($scope.projectName+" "+$scope.projectDesc)
  	post({
- 		project : {
- 			projectName  : $scope.projectName
- 		}
- 	})
- }
+ 		
+ 			projectName  : $scope.projectName,
+ 			projectDisc : $scope.projectDesc
+ 	});
+ 	
+get();
+
+ } 
 })

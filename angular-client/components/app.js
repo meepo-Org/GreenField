@@ -1,4 +1,5 @@
-var app = angular.module('meepo')
+var app = angular.module('meepo');
+
 app.component('app', {
 	templateUrl :'/templates/app.html'
 });

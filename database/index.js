@@ -41,11 +41,9 @@ var save = function (data , callback) {
 	})
 }
 
-var addTask = function(data, callback)
-{
+var addTask = function(data, callback) {
 	var task = new Task(data);
-	task.save(function(err, data2)
-	{
+	task.save(function(err, data2) {
 		if(err)
 		{
 			callback(err, null);
@@ -54,8 +52,7 @@ var addTask = function(data, callback)
 	});
 }
 
-var addProject = function(data, callback)
-{
+var addProject = function(data, callback) {
 	var project = new Project(data);
 	project.save(function(err,elem){
 		if(err){
@@ -64,8 +61,6 @@ var addProject = function(data, callback)
 		callback(null,elem)
 	});
 }
-
-
 
 module.exports.save = save;
 module.exports.User = User;
