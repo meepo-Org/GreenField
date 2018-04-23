@@ -51,6 +51,7 @@ app.post('/login', function (req , res) {
 		}
 		// res.sendStatus(200)
 	})
+	//res.sendStatus(200)
 })
 app.get('/logout',function(req,res){
 	console.log('out of destroy',req.session)
@@ -68,13 +69,30 @@ app.get('/logout',function(req,res){
 })
  
 app.post('/project',function(req , res) {
-	db.addProject(req.body , function (err , data) {
+		db.User.findOne({'_id':req.session._id},function (err, data) {
+		if(err){res.sendStatus(404)}
+		
+		if(data !== null){
+		var project={};
+		 project['projectName']=req.body.projectName;
+		 project['projectDisc']=req.body.projectDisc;
+		 project['project_id']=req.session._id;
+		 console.log(project)
+		 // data.projects.push(project);
+		db.addProject(project , function (err , data) {
 		if(err) {
 			res.send(err)
 		}
-		res.send(data)
+		//res.send(data)
 		res.sendStatus(200);
 	})
+	//res.sendStatus(200)	
+		}
+		// res.sendStatus(200)
+	})
+	console.log('reqbodyyy',req.body);
+	res.sendStatus(200)
+
 });
 
 app.get('/project', function(req,res) {

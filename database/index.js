@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+let Schema =mongoose.Schema;
 mongoose.connect('mongodb://localhost:/PM-db' );
 // mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db' || 'mongodb://localhost/PM-db');
 var db = mongoose.connection;
@@ -19,6 +20,8 @@ var userSchema = mongoose.Schema({
 	username :{type : String ,required :true, index :{unique:true} },
 	password :{type : String ,required :true}, 
 	email :{type : String ,required :true}, 
+	//projects : [{ type: Schema.Types.ObjectId, ref: 'Project' }]
+	projects:[projectSchama]
 	
 });
 
@@ -53,13 +56,24 @@ var addTask = function(data, callback) {
 }
 
 var addProject = function(data, callback) {
-	var project = new Project(data);
-	project.save(function(err,elem){
-		if(err){
-			callback(err,null)
-		}
-		callback(null,elem)
-	});
+	var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc})
+console.log('dataaaaaaaaaa',data)
+User.findById(data.project_id, function (err, user) {
+  if (err) return handleError(err);
+  user.projects.push(project);
+
+  //user.projects.push({_id:mongoose.Types.ObjectId(),projectName:data.projectName,projectDisc:data.projectDisc});
+  user.save();
+  project.save();
+});
+	// var project = new  User({projects:{projectName:data.projectName,projectDisc:data.projectDisc}});
+
+	// project.save(function(err,elem){
+	// 	if(err){
+	// 		callback(err,null)
+	// 	}
+	// 	callback(null,elem)
+	// });
 }
 
 module.exports.save = save;
