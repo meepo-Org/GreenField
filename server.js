@@ -9,6 +9,7 @@ let app = express();
 app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}))
+
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err) {

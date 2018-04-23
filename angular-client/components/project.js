@@ -33,6 +33,6 @@ app.controller('project' , function ($scope,$http ) {
  	post({
  		projectName  : $scope.projectName,
  		projectDisc : $scope.projectDesc
- 		});
-	} 
+ 	});
+ } 
 })
