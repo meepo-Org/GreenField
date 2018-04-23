@@ -5,25 +5,23 @@ var app = angular.module('meepo')
 
 app.controller('signup' , function ($scope,$http ) {
   var get = function () {
-	var get={
+	var response={
 		method:"GET",
 		url : '/user'
 	}
-		$http(get).then(function (data) {
-			console.log($scope.getuser);
-			$scope.getuser = data.data
-			console.log($scope.getuser);
+		$http(response).then(function (data) {
+			$scope.getter = data.data
 		},function () {
 			console.log('error')
 		})
  }
  var post = function (data) {
-	var post = {
+	var requestData = {
 		method :'POST',
 		url : '/user',
 		data : data
 	}
-	$http(post).then(function () {
+	$http(requestData).then(function () {
 		console.log('success')
 	},function () {
 		console.log('error')

@@ -1,0 +1,20 @@
+  body{
+    /*background-image: url(http://www.joburgchiropractor.co.za/images/background.jpg);*/
+    background-color: #5499C7;
+  }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #DBEDF3;
+  height: 50px;
+  font-size: 30px;
+}
+.signup {
+  background-color: #ECF0F1;
+}
+.main{
+  color : white;
+}

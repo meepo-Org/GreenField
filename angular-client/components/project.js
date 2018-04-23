@@ -6,34 +6,33 @@ app.component('project', {
 
 app.controller('project' , function ($scope,$http ) {
 	var get = function () {
-	var get={
+	var response = {
 		method:"GET",
 		url : '/project'
 	}
-		$http(get).then(function (data) {
+		$http(response).then(function (data) {
 			$scope.getter = data.data
 		},function () {
 			console.log('error')
 		})
  }
  var post = function (data) {
-	var post = {
+	var requestData = {
 		method :'POST',
-		url : '/user',
+		url : '/project',
 		data : data
 	}
-	$http(post).then(function () {
-		console.log('success')
+	$http(requestData).then(function () {
+		console.log('success');
 	},function () {
-		console.log('error')
+		console.log('error');
 	})
- 	
  }
+
  $scope.addproject = function () {
  	post({
- 		project : {
- 			projectName  : $scope.projectName
- 		}
- 	})
- }
+ 		projectName  : $scope.projectName,
+ 		projectDisc : $scope.projectDesc
+ 		});
+	} 
 })

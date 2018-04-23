@@ -5,40 +5,33 @@ app.component('login', {
 });
 
 app.controller('login' , function ($scope,$http ) {
-	var get = function () {
-	var get={
+  var get = function () {
+	var response={
 		method:"GET",
 		url : '/login'
 	}
-		$http(get).then(function (data) {
-			
-			$scope.getLogin = data.data
-			console.log("scoope get Login",$scope.getLogin)
-		},function () {
-			console.log('error')
-		})
- }
+	$http(response).then(function (data) {
+		$scope.getter = data.data
+	},function () {
+		console.log('error')
+	})
+  }
  var post = function (data) {
- 	//$scope.getLogin = data.data
-	var post = {
+	var requestData = {
 		method :'POST',
 		url : '/login',
 		data : data
 	}
-	$http(post).then(function () {
-		console.log('success')
+	$http(requestData).then(function () {
+	  console.log('success')
 	},function () {
-		console.log('error')
+	  console.log('error')
 	})
-	
- 	
  }
 	$scope.login = function () {
-		post({
-			username : $scope.nameLog ,
-			password : $scope.passwordLog 
-		})
-
-		
-	}
+	  post({
+		username : $scope.nameLog ,
+		password : $scope.passwordLog 
+	  })
+ 	}
 })

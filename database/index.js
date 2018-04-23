@@ -16,9 +16,9 @@ var projectSchama = mongoose.Schema({
 })
 
 var userSchema = mongoose.Schema({
-	username :{type : String  , required : true , index : {unique:true} },
-	password : {type : String  , required : true } , 
-	email : {type : String  , required : true }, 
+	username :{type : String ,required :true, index :{unique:true} },
+	password :{type : String ,required :true}, 
+	email :{type : String ,required :true}, 
 	
 });
 
@@ -41,11 +41,9 @@ var save = function (data , callback) {
 	})
 }
 
-var addTask = function(data, callback)
-{
+var addTask = function(data, callback) {
 	var task = new Task(data);
-	task.save(function(err, data2)
-	{
+	task.save(function(err, data2) {
 		if(err)
 		{
 			callback(err, null);
@@ -54,11 +52,19 @@ var addTask = function(data, callback)
 	});
 }
 
-
-
+var addProject = function(data, callback) {
+	var project = new Project(data);
+	project.save(function(err,elem){
+		if(err){
+			callback(err,null)
+		}
+		callback(null,elem)
+	});
+}
 
 module.exports.save = save;
 module.exports.User = User;
 module.exports.Project = Project;
 module.exports.Task = Task;
 module.exports.addTask = addTask;
+module.exports.addProject = addProject;

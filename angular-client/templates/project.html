@@ -1,6 +1,14 @@
-<h1>add project</h1>
-
 <div class="col-xs-3" ng-controller='project'>
-
+<h3>add project</h3>
 <input name="project-name" class="form-control" ng-model="projectName">
+<h3>add description</h3>
+<input name="project-desc" class="form-control" ng-model="projectDesc">
+<br></br>
 <button class="btn btn-primary" ng-click="addproject()">add</button>
+
+<div ng-repeat = "project in getter">
+	<h3>{{project.projectName}}</h3>
+	<h4>{{project.projectDisc}}</h4>
+</div>
+
+</div>
