@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const db = require('./database/index.js')
+let session = require('express-session')
 
 let app = express();
 
 app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser.json());
-
+app.use(session({secret:'this is secret'}))
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err){res.send(err)}
@@ -23,12 +24,28 @@ app.get('/user', function (req , res) {
 	})
 })
 // Abdulhameed
-app.get('/login', function (req , res) {
-	db.User.find(function (err, data) {
+// app.get('*',function(req,res){  
+//     res.redirect('http://localhost:1596/'+req.url)
+// })
+app.post('/login', function (req , res) {
+	console.log("reqbody",req.body)
+	db.User.findOne({'username':req.body.username,'password':req.body.password},function (err, data) {
 		if(err){res.send(err)}
+		console.log("data",data)
+		if(data !== null){
+		req.session.username=data.username;
+		req.session.password=data.password;
+		console.log('session',req.session)
+		}
 		res.send(data)
 	})
 	// res.redirect('./templates/login.html');
+})
+app.get('/',function(req,res){
+	if(req.session.username){
+		res.redirect('project')
+	}
+	res.render(`<h1>log in first</h1>`)
 })
 app.post('/project',function(req , res){
 	db.save(req.body , function (err , data) {

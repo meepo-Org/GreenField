@@ -11,12 +11,15 @@ app.controller('login' , function ($scope,$http ) {
 		url : '/login'
 	}
 		$http(get).then(function (data) {
-			$scope.getter = data.data
+			
+			$scope.getLogin = data.data
+			console.log("scoope get Login",$scope.getLogin)
 		},function () {
 			console.log('error')
 		})
  }
  var post = function (data) {
+ 	//$scope.getLogin = data.data
 	var post = {
 		method :'POST',
 		url : '/login',
@@ -27,6 +30,7 @@ app.controller('login' , function ($scope,$http ) {
 	},function () {
 		console.log('error')
 	})
+	
  	
  }
 	$scope.login = function () {
@@ -34,5 +38,7 @@ app.controller('login' , function ($scope,$http ) {
 			username : $scope.nameLog ,
 			password : $scope.passwordLog 
 		})
+
+		
 	}
 })

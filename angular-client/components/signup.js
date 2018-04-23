@@ -10,9 +10,9 @@ app.controller('signup' , function ($scope,$http ) {
 		url : '/user'
 	}
 		$http(get).then(function (data) {
-			console.log($scope.getter);
-			$scope.getter = data.data
-			console.log($scope.getter);
+			console.log($scope.getuser);
+			$scope.getuser = data.data
+			console.log($scope.getuser);
 		},function () {
 			console.log('error')
 		})
