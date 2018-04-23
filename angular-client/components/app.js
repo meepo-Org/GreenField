@@ -5,6 +5,7 @@ app.component('app', {
 });
 
 app.controller('app' , function ($scope,$http ) {
+
   var get = function () {
 	var response={
 		method:"GET",
@@ -15,6 +16,9 @@ app.controller('app' , function ($scope,$http ) {
 		console.log('error')
 	})
   }
+
+  			$scope.IsVisible = true;
+
 
 	$scope.logout = function () {
 	  get()

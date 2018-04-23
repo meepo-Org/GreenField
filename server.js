@@ -9,6 +9,7 @@ let app = express();
 app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}))
+
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err) {
@@ -31,20 +32,21 @@ app.get('/user', function (req , res) {
 
 // Abdulhameed
 app.post('/login', function (req , res) {
-	console.log("reqbody",req.body)
+
+	// res.redirect('./templates/login.html');
 	db.User.findOne({'username':req.body.username,'password':req.body.password},function (err, data) {
-		if(err){res.send(err)}
-		console.log("data",data)
+		if(err){res.sendStatus(404)}
+		
 		if(data !== null){
 		req.session._id=data._id;
 		req.session.username=data.username;
 		req.session.password=data.password;
 		console.log('session',req.session)
 
+		res.sendStatus(200)
 		}
-		res.send(data)
+		res.sendStatus(200)
 	})
-	// res.redirect('./templates/login.html');
 })
 app.get('/logout',function(req,res){
 	console.log('out of destroy',req.session)
@@ -66,7 +68,8 @@ app.post('/project',function(req , res) {
 		if(err) {
 			res.send(err)
 		}
-		res.send(data);
+		res.send(data)
+		res.sendStatus(200);
 	})
 });
 
@@ -75,7 +78,7 @@ app.get('/project', function(req,res) {
 		if(err) {
 			res.send(err)
 		}
-		res.send(data)
+		res.sendStatus(200)
 	});
 });
 

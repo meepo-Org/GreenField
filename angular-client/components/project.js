@@ -5,17 +5,17 @@ app.component('project', {
 });
 
 app.controller('project' , function ($scope,$http ) {
-	var get = function () {
+  get = function () {
 	var response = {
 		method:"GET",
 		url : '/project'
 	}
 		$http(response).then(function (data) {
-			$scope.getter = data.data
+			$scope.getter = data['data']
 		},function () {
 			console.log('error')
 		})
- }
+  }
  var post = function (data) {
 	var requestData = {
 		method :'POST',
@@ -31,8 +31,12 @@ app.controller('project' , function ($scope,$http ) {
 
  $scope.addproject = function () {
  	post({
- 		projectName  : $scope.projectName,
+ 		projectName : $scope.projectName , 
  		projectDisc : $scope.projectDesc
- 		});
-	} 
+ 	})
+ }
+
+ $scope.init = function () {
+ 	get()
+ } 
 })

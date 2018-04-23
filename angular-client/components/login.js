@@ -4,7 +4,7 @@ app.component('login', {
 	templateUrl :'/templates/login.html'
 });
 
-app.controller('login' , function ($scope,$http ) {
+app.controller('login' , function ($scope,$http,$window ) {
   var get = function () {
 	var response={
 		method:"GET",
@@ -23,7 +23,7 @@ app.controller('login' , function ($scope,$http ) {
 		data : data
 	}
 	$http(requestData).then(function () {
-	  console.log('success')
+	  $window.location.href = 'app2.html'
 	},function () {
 	  console.log('error')
 	})
@@ -33,5 +33,6 @@ app.controller('login' , function ($scope,$http ) {
 		username : $scope.nameLog ,
 		password : $scope.passwordLog 
 	  })
+	 ; 
  	}
 })
