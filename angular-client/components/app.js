@@ -5,6 +5,22 @@ app.component('app', {
 });
 
 app.controller('app' , function ($scope,$http ) {
+
+  var get = function () {
+	var response={
+		method:"GET",
+		url : '/logout'
+	}
+	$http(response).then(function (data) {
+	},function () {
+		console.log('error')
+	})
+  }
+
   			$scope.IsVisible = true;
 
+
+	$scope.logout = function () {
+	  get()
+ 	}
 })
