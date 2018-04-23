@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const db = require('./database/index.js')
+let session = require('express-session')
 
 let app = express();
 
 app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser.json());
-
+app.use(session({secret:'this is secret'}))
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err) {
@@ -29,10 +30,15 @@ app.get('/user', function (req , res) {
 //Rpotes for projects
 
 // Abdulhameed
-app.get('/login', function (req , res) {
-	db.User.find(function (err, data) {
-		if(err){ 
-			res.send(err)
+app.post('/login', function (req , res) {
+	console.log("reqbody",req.body)
+	db.User.findOne({'username':req.body.username,'password':req.body.password},function (err, data) {
+		if(err){res.send(err)}
+		console.log("data",data)
+		if(data !== null){
+		req.session.username=data.username;
+		req.session.password=data.password;
+		console.log('session',req.session)
 		}
 		res.send(data)
 	})
