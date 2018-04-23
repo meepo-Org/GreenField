@@ -16,20 +16,9 @@ app.controller('app' , function ($scope,$http ) {
 		console.log('error')
 	})
   }
-  var geee = function () {
-	var response={
-		method:"GET",
-		url : '/'
-	}
-	$http(response).then(function (data) {
-	},function () {
-		console.log('error')
-	})
-  }
 	$scope.logout = function () {
 	  get()
  	}
  	$scope.IsVisible = false;
-  	$scope.logoutVisible =true;
- 	geee()
+ 	$scope.logoutVisible = true ;
 })

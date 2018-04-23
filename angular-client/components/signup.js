@@ -22,7 +22,8 @@ app.controller('signup' , function ($scope,$http ) {
 		data : data
 	}
 	$http(requestData).then(function () {
-		console.log('success')
+	  $window.location.href = '#!/login'
+	  console.log('success')
 	},function () {
 		console.log('error')
 	})

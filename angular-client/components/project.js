@@ -32,7 +32,7 @@ app.controller('project' , function ($scope,$http ) {
  $scope.addproject = function () {
  	post({
  		projectName : $scope.projectName , 
- 		projectDisc : $scope.projectDesc
+ 		projectDisc : $scope.projectDisc
  	})
  }
 

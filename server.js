@@ -10,16 +10,13 @@ app.use(express.static(path.join(__dirname, '/angular-client/') ))
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}))
 
-app.get('/',function (req , res) {
-	res.send('hhhh')
-})
-
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
 		if(err) {
 			res.send(err)
 		}
 		res.send(data)
+		res.sendStatus(200)
 	})
 	
 })
@@ -45,8 +42,6 @@ app.post('/login', function (req , res) {
 		req.session._id=data._id;
 		req.session.username=data.username;
 		req.session.password=data.password;
-		console.log('session',req.session)
-
 		res.sendStatus(200)
 		}
 		// res.sendStatus(200)
@@ -73,7 +68,7 @@ app.post('/project',function(req , res) {
 			res.send(err)
 		}
 		res.send(data)
-		res.sendStatus(200);
+		// res.sendStatus(200);
 	})
 });
 

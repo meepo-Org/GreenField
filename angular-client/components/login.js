@@ -23,18 +23,20 @@ app.controller('login' , function ($scope,$http,$window ) {
 		data : data
 	}
 	$http(requestData).then(function () {
-
 	  $window.location.href = '#!/project'
 	},function () {
 	  console.log('error')
 	})
  }
 	$scope.login = function () {
+		if ($scope.nameLog === undefined || $scope.nameLog ===' ') {
+			alert("there's no user");
+		}else if($scope.passwordLog === undefined || $scope.passwordLog ===' '){
+			alert("there's no password");
+		}
 	  post({
 		username : $scope.nameLog ,
 		password : $scope.passwordLog 
 	  });
-	  	$scope.logoutVisible = true;
-		$scope.IsVisible = false ;
  	}
 })
