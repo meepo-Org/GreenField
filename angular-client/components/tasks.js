@@ -1,8 +1,7 @@
-angular.module('meepo')
-.component('tasks', 
-{
-	controller: function()
-	{
+var app = angular.module('meepo')
+
+app.component('tasks', {
+	controller: function() {
 
 	},
 
