@@ -5,13 +5,13 @@ app.component('project', {
 });
 
 app.controller('project' , function ($scope,$http ) {
-  get = function () {
+ var get = function () {
 	var response = {
 		method:"GET",
 		url : '/project'
 	}
 		$http(response).then(function (data) {
-			$scope.getter = data['data']
+			$scope.getter = data.data
 		},function () {
 			console.log('error')
 		})
@@ -36,7 +36,5 @@ app.controller('project' , function ($scope,$http ) {
  	})
  }
 
- $scope.init = function () {
- 	get()
- } 
+ 	get();
 })
