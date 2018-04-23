@@ -1,3 +1,4 @@
+<div ng-controller='app' >
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -11,11 +12,12 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#!/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="#!/logout" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
 <div ng-view></div>
-<div ng-controller='app' >
+
   <button class="btn" ng-click="disabled = !disabled">ff</button>
   <div ng-hide="disabled" >
     <h1>Welcome</h1>

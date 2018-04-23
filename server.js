@@ -36,13 +36,29 @@ app.post('/login', function (req , res) {
 		if(err){res.send(err)}
 		console.log("data",data)
 		if(data !== null){
+		req.session._id=data._id;
 		req.session.username=data.username;
 		req.session.password=data.password;
 		console.log('session',req.session)
+
 		}
 		res.send(data)
 	})
 	// res.redirect('./templates/login.html');
+})
+app.get('/logout',function(req,res){
+	console.log('out of destroy',req.session)
+	if(req.session.username){
+			req.session.destroy(function(err){
+		if(err){
+			res.negotiate(err);
+		}
+		console.log('after destroy',req.session)
+		res.end('logged out')
+		})
+	}
+	res.end('the user not logged in')
+
 })
  
 app.post('/project',function(req , res) {
