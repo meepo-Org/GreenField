@@ -4,6 +4,7 @@ app.component('app', {
 	templateUrl :'/templates/app.html'
 });
 
-app.controller('/app' , function ($scope,$http ) {
+app.controller('app' , function ($scope,$http ) {
+  			$scope.IsVisible = true;
 
 })
