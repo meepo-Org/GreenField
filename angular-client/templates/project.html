@@ -20,12 +20,12 @@
         </tr>
 
 		
-          <tr ng-repeat = "project in getter" >
+          <tr ng-repeat = "project in projects" >
 	          <td>{{project.projectName}}</td>
 	          <td>{{project.projectDisc}}</td>
-	          <td><button class="btn btn-block btn-info" ng-click="tasks(contact._id)">Tasks</button></td>
-	          <td><button class="btn btn-block btn-danger" ng-click="delete(contact._id)">Delete</button></td>
-	          <td><button class="btn btn-block btn-primary" ng-click="updae(contact._id)">Update</button></td>
+	          <td><button class="btn btn-block btn-info" ng-click="del(project._id)">Tasks</button></td>
+	          <td><button class="btn btn-block btn-danger" ng-click="deleteProject(project)">Delete</button></td>
+	          <td><button class="btn btn-block btn-primary" ng-click="del(project._id)">Update</button></td>
           </tr>
         
 

@@ -5,13 +5,16 @@ app.component('project', {
 });
 
 app.controller('project' , function ($scope,$http ) {
+
+  
 	var get = function () {
 	var response = {
 		method:"GET",
 		url : '/project'
 	}
-		$http(response).then(function (data) {
-			$scope.getter = data.data
+		$http(response).then(function (res) {
+			$scope.projects = res.data
+			console.log($scope.projects)
 		},function () {
 			console.log('error')
 		})
@@ -29,14 +32,40 @@ app.controller('project' , function ($scope,$http ) {
 	})
  }
   get()
+  ////////////////
 
+
+var postD =function(data) {
+	var requestData = {
+		method : 'POST',
+		url : '/deleteProj',
+		data : data 
+	}
+	$http(requestData).then(function () {
+		console.log('success');
+	},function () {
+		console.log('error');
+	})
+}
+  ////////////////
  $scope.addproject = function () {
  	get()
- 	console.log("Abdulahameed")
+ 	
  	post({
  		projectName  : $scope.projectName,
  		projectDisc : $scope.projectDesc
  		});
-	} 
+  } 
+
+   $scope.deleteProject = function(project){
+	   	console.log("delete",project)
+	   	get()
+	   	postD(project)
+   }
+
+  
 	
-})
+});
+
+
+

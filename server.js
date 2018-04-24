@@ -63,6 +63,23 @@ app.get('/project', function(req,res) {
 	});
 });
 
+app.post('/deleteProj', function (req,res){
+	//console.log("ideeeee",req.body._id)
+	db.deleteProject({_id:req.body._id},function(err,data){
+		if(err){
+			res.send(err)
+		}
+		res.send(data)
+	});
+});
+// app.delete('/project/:id', function (req, res) {
+//   var id = req.params.id;
+//   console.log(id);
+//   db.project.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
+//     res.json(doc);
+//   });
+// });
+
 //Routes for Tasks :)
 app.get('/tasks', function(req, res) {
 	db.Task.find({}, function(err, data) {
