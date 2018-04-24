@@ -28,6 +28,7 @@ app.controller('project' , function ($scope,$http ) {
 		console.log('error');
 	})
  }
+ 	$scope.logoutVisible = false ;
 
  $scope.addproject = function () {
  	post({
