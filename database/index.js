@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema =mongoose.Schema;
-//mongoose.connect('mongodb://localhost:/PM-db' );
-mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
+mongoose.connect('mongodb://localhost:/PM-db' );
+//mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
 var db = mongoose.connection;
 db.on('error' , function(){
 	console.log('mongoose not Connected !')
