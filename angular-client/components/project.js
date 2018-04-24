@@ -28,11 +28,15 @@ app.controller('project' , function ($scope,$http ) {
 		console.log('error');
 	})
  }
+  get()
 
  $scope.addproject = function () {
+ 	get()
+ 	console.log("Abdulahameed")
  	post({
  		projectName  : $scope.projectName,
  		projectDisc : $scope.projectDesc
  		});
 	} 
+	
 })
