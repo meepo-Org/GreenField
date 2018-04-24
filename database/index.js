@@ -26,7 +26,8 @@ var taskSchema = mongoose.Schema({
 	description: String,
 	assignedTo: String,
 	complexity: Number,
-	status: String
+	status: String,
+	number: Number
 });
 
 var User = mongoose.model("User" , userSchema);
@@ -52,6 +53,15 @@ var addTask = function(data, callback) {
 	});
 }
 
+var deleteTask = function(data, callback) {
+	Task.deleteOne(data, function (err, data2) {
+		if(err){
+			callback(err, null);
+		}
+		callback(null, data2);
+	});
+}
+
 var addProject = function(data, callback) {
 	var project = new Project(data);
 	project.save(function(err,elem){
@@ -67,4 +77,5 @@ module.exports.User = User;
 module.exports.Project = Project;
 module.exports.Task = Task;
 module.exports.addTask = addTask;
+module.exports.deleteTask = deleteTask;
 module.exports.addProject = addProject;
