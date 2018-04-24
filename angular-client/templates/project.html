@@ -1,4 +1,19 @@
-<div class="col-xs-3" ng-controller='project'>
+<nav class="navbar-inverse navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" ng-click="IsVisible = true">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#"  ng-click="IsVisible = true" >Home</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#!/logout" ng-click="logout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div ng-view></div>
+
+<div class="col-xs-3" ng-controller='project' style="top:50px;">
 	<h3>add project</h3>
 	<input name="project-name" class="form-control" ng-model="projectName">
 	<h3>add description</h3>
@@ -6,6 +21,7 @@
 	</br></br>
 	<button class="btn btn-primary" ng-click="addproject()">add</button>
 	<div ng-repeat = "project in getter">
-		<h4>{{project}}</h4>
+		<h3>{{project.projectName}}</h3>
+		<h4>{{project.projectDesc}}</h4>
 	</div>
 </div>
