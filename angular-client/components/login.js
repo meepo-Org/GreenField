@@ -3,36 +3,38 @@ app.component('login', {
 	templateUrl :'/templates/login.html'
 });
 app.controller('login' , function ($scope,$http,$window ) {
-  var get = function () {
-	var response={
-		method:"GET",
-		url : '/login'
+	var get = function () {
+		var response={
+			method:"GET",
+			url : '/login'
+		}
+		$http(response).then(function (data) {
+			$scope.getter = data.data;
+		},function () {
+			console.log('error')
+		});
 	}
-	$http(response).then(function (data) {
-		$scope.getter = data.data;
-	},function () {
-		console.log('error')
-	});
-  }
- var post = function (data) {
-	var requestData = {
-		method :'POST',
-		url : '/login',
-		data : data
+	var post = function (data) {
+		var requestData = {
+			method :'POST',
+			url : '/login',
+			data : data
+		}
+		$http(requestData).then(function () {
+			$window.location.href = 'app2.html';
+		},function () {
+			console.log('error')
+		})
 	}
-	$http(requestData).then(function () {
-
-	  $window.location.href = '#!/project';
-	},function () {
-	  console.log('error')
-	})
- }
 	$scope.login = function () {
-	  post({
-		username : $scope.nameLog ,
-		password : $scope.passwordLog 
-	  });
-	  	$scope.logoutVisible = true;
-		$scope.IsVisible = false ;
- 	}
+		if ($scope.nameLog === undefined || $scope.nameLog ===' ') {
+			alert("there's no user");
+		}else if($scope.passwordLog === undefined || $scope.passwordLog ===' '){
+			alert("there's no password");
+		}
+		post({
+			username : $scope.nameLog ,
+			password : $scope.passwordLog 
+		});
+	}
 })

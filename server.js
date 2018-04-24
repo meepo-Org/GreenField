@@ -15,6 +15,7 @@ app.post('/user',function(req , res){
 			res.send(err)
 		}
 		res.send(data)
+		// res.sendStatus(200)
 	})
 	
 });
@@ -29,42 +30,42 @@ app.get('/user', function (req , res) {
 app.post('/login', function (req , res) {
 	db.User.findOne({'username':req.body.username,'password':req.body.password},function (err, data) {
 		if(err){res.sendStatus(404)}
-		if(data !== null){
-		req.session._id=data._id;
-		req.session.username=data.username;
-		req.session.password=data.password;
-		res.sendStatus(200)
-		}
-	});
+			if(data !== null){
+				req.session._id=data._id;
+				req.session.username=data.username;
+				req.session.password=data.password;
+				res.sendStatus(200)
+			}
+		});
 });
 app.get('/logout',function(req,res){
 	if(req.session.username){
-			req.session.destroy(function(err){
+		req.session.destroy(function(err){
 			if(err){
 				res.negotiate(err);
 			}
 			res.end('logged out')
-			});
+		});
 	}
 	res.end('the user not logged in')
 
 });
 app.post('/project',function(req , res) {
-		db.User.findOne({'_id':req.session._id},function (err, data) {
+	db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
-		if(data !== null){
-						var project={};
-						 project['projectName']=req.body.projectName;
-						 project['projectDisc']=req.body.projectDisc;
-						 project['project_id']=req.session._id;
-						db.addProject(project , function (err , data) {
-							if(err) {
-								res.send(err)
-							}
-						res.sendStatus(200);
-						});	
-		}
-	});
+			if(data !== null){
+				var project={};
+				project['projectName']=req.body.projectName;
+				project['projectDisc']=req.body.projectDisc;
+				project['project_id']=req.session._id;
+				db.addProject(project , function (err , data) {
+					if(err) {
+						res.send(err)
+					}
+					res.sendStatus(200);
+				});	
+			}
+		});
 	res.sendStatus(200);
 });
 app.get('/project', function(req,res) {
@@ -92,8 +93,8 @@ app.post('/tasks', function(req, res) {
 		res.status(201).send("Here is your added task ", data);
 	});
 });
-  
+
 var port = 1596
 app.listen(process.env.PORT || port , function () {
-console.log("server is listening "+ port +" Port")
+	console.log("server is listening "+ port +" Port")
 });

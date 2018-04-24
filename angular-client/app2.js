@@ -1,1 +1,1 @@
-var app = angular.module('meepo2' , []);
+angular.module('meepo2' , []);
