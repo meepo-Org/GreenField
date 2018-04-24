@@ -2,7 +2,7 @@ var app = angular.module('meepo2')
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });
-app.controller('project' , function ($scope,$http ) {
+app.controller('project' , function ($scope,$http,$window) {
 	var get = function () {
 		var response = {
 			method:"GET",
@@ -10,6 +10,16 @@ app.controller('project' , function ($scope,$http ) {
 		}
 		$http(response).then(function (data) {
 			$scope.getter = data['data'];
+		},function () {
+			console.log('error')
+		});
+	}
+	var logout = function () {
+		var response={
+			method:"GET",
+			url : '/logout'
+		}
+		$http(response).then(function (data) {
 		},function () {
 			console.log('error')
 		});
@@ -32,4 +42,12 @@ app.controller('project' , function ($scope,$http ) {
 			projectDisc : $scope.projectDisc
 		});
 	} 
+	$scope.test = function () {
+		$window.location.href = 'index.html';
+		
+	}
+	$scope.logout = function () {
+		$window.location.href = 'index.html';
+		logout()
+	}
 });
