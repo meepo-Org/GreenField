@@ -1,9 +1,8 @@
 <div ng-controller='login'>
 <div class="container" style="margin-top: 5%;">
   <div class="row">
-    <div class="col-sm-4"> </div>
-    <div class="col-md-4">
-
+    <!-- <div class="col-sm-4"> </div> -->
+    <div class="col-md-4" style="left: 70px; top: -50px;">
       <h1 class="text-center main "> Login page</h1>
       <br/>
       <div class="col-sm-12">
@@ -13,13 +12,13 @@
             <form action="#">
               <div class="form-group">
                 <label for="UserName">User name</label>
-                <input type="text" class="form-control"  ng-model="nameLog">
+                <input type="text" class="form-control"  ng-model="nameLog" placeholder="The Name">
               </div>
               <div class="form-group">
                 <label for="pwd">Password:</label>
-                <input type="password" class="form-control"  ng-model="passwordLog">
+                <input type="password" class="form-control"  ng-model="passwordLog" placeholder="The PASSLOG">
               </div>
-              <button type="submit" class="btn btn-default btn-lg" ng-click="login()">login</button>
+              <button type="submit" class="btn btn-default btn-lg" ng-click="login()" data-dismiss="modal">login</button>
               <a href=""><button type="submit" class="pull-right btn-link main">Forget password</button></a>
             </form>
             <br/>
@@ -30,9 +29,3 @@
   </div>
 </div>
 </div>
-
-  <div class='footer'>
-    <footer class="container-fluid text-center">
-      <p> Copyright</p>  
-    </footer>
-  </div>  

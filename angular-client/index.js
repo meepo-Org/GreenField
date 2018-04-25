@@ -10,5 +10,11 @@ app.config(function($routeProvider) {
     })
     .when('/signup', {
         templateUrl: "templates/signup.html" 
-    });
+    })
+    .when('logout',{
+    	templateUrl:"templates/app.html"
+    })
+    .when('/project',{
+        templateUrl:"templates/project.html"
+    })
 })
