@@ -76,6 +76,33 @@ app.get('/project', function(req,res) {
 		res.sendStatus(200);
 	});
 });
+
+app.post('/deleteProj', function (req,res){
+	//console.log("ideeeee",req.body._id)
+	db.deleteProject({_id:req.body._id},function(err,data){
+		if(err){
+			res.send(err)
+		}
+		res.send(data)
+	});
+});
+
+app.post('/changeProj', function (req,res){
+	
+	var query = {projectName:req.body._id.projectName, projectDisc:req.body._id.projectDisc}
+	var newProj = {projectName:req.body.projectName,projectDisc:req.body.projectDisc}
+	console.log("query",query)
+	db.changeProject(query,{$set:newProj},function(err,data){
+		if(err){
+			res.send(err)
+		}
+		res.send(data)
+	});
+});
+ 
+
+//Routes for Tasks :)
+
 app.get('/tasks', function(req, res) {
 	db.Task.find({}, function(err, data) {
 		if(err) {
