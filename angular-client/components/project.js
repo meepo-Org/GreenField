@@ -1,9 +1,7 @@
-var app = angular.module('meepo')
-
+var app = angular.module('meepo2')
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });
-
 app.controller('project' , function ($scope,$http ) {
   
  var get = function () {
@@ -65,16 +63,7 @@ var postD =function(data) {
 	})
 }
   ///////////////////
-
- $scope.addproject = function () {
- 	get()
- 	
- 	post({
- 		projectName  : $scope.projectName,
- 		projectDisc : $scope.projectDesc
- 		});
-  } 
-
+ 
    $scope.deleteProject = function(project){
 	   	
 	   	get()
@@ -95,8 +84,29 @@ var postD =function(data) {
  		});
 
     }
-	
+
+	var logout = function () {
+		var response={
+			method:"GET",
+			url : '/logout'
+		}
+		$http(response).then(function (data) {
+		},function () {
+			console.log('error')
+		});
+	}
+	$scope.addproject = function () {
+		post({
+			projectName : $scope.projectName , 
+			projectDisc : $scope.projectDisc
+		});
+	} 
+	$scope.test = function () {
+		$window.location.href = 'index.html';
+		
+	}
+	$scope.logout = function () {
+		$window.location.href = 'index.html';
+		logout()
+	}
 });
-
-
-
