@@ -84,8 +84,22 @@ var deleteProject = function(data,userId,callback){
 	});
 }
 
-var changeProject = function(query,condition,callback){
- 
+var changeProject = function(query,condition,userId,callback){
+ User.findById(userId, function (err, user) {
+	 	if(err){
+	 		throw err;
+	 	}
+	 	for(var i=0;i<user.projects.length;i++){
+	 		if(query.projectName === user.projects[i].projectName && query.projectDisc === user.projects[i].projectDisc ){
+	 			user.projects[i].projectName=condition.$set.projectName;
+	 			user.projects[i].projectDisc=condition.$set.projectDisc;
+	 			user.save();
+	 		}
+	 	}
+
+	 	
+
+ });
 	 Project.findOneAndUpdate(query,condition,function(err,elem){
 	 	if(err){
 	 		callback(err,null)
