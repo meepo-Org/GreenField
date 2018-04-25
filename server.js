@@ -4,7 +4,10 @@ const path = require('path');
 const db = require('./database/index.js');
 const session = require('express-session');
 const app = express();
+const expressValidator = require('express-validator');
+const bcrypt =require('bcrypt');
 
+app.use(expressValidator())
 app.use(express.static(path.join(__dirname, '/angular-client/') ));
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}));
@@ -15,7 +18,6 @@ app.post('/user',function(req , res){
 			res.send(err)
 		}
 		res.send(data)
-		// res.sendStatus(200)
 	})
 	
 });
@@ -28,13 +30,19 @@ app.get('/user', function (req , res) {
 	})
 });
 app.post('/login', function (req , res) {
-	db.User.findOne({'username':req.body.username,'password':req.body.password},function (err, data) {
+	db.User.findOne({'username':req.body.username},function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
-				req.session._id=data._id;
-				req.session.username=data.username;
-				req.session.password=data.password;
-				res.sendStatus(200)
+				bcrypt.compare(req.body.password, data.password, function(err, resCrypt) {
+					if(err){res.sendStatus(404)}
+					if(resCrypt){
+							req.session._id=data._id;
+							req.session.username=data.username;
+							req.session.password=data.password;
+							res.sendStatus(200)
+					}
+                });
+
 			}
 		});
 });

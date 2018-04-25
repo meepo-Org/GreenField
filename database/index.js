@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+let bcrypt = require('bcrypt');
 let Schema =mongoose.Schema;
 mongoose.connect('mongodb://localhost:/PM-db' );
 //mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
@@ -31,12 +32,19 @@ var taskSchema = mongoose.Schema({
 var User = mongoose.model("User" , userSchema);
 var Project = mongoose.model("Project" , projectSchama);
 var Task = mongoose.model('Task', taskSchema);
-var save = function (data , callback) {
-	var user = new User(data);
-	user.save(function (err , elem) {
-		if(err){callback(err, null)}
-			callback(null ,elem)
+var save = function (newUser , callback) {
+	bcrypt.genSalt(10,function(err,salt){
+		bcrypt.hash(newUser.password,salt,function(err,hash){
+			newUser.password=hash;
+				var user = new User(newUser);
+             	user.save(function (err , elem) {
+		        if(err){callback(err, null)}
+		     	callback(null ,elem)
+	             })
+			//newUser.save(callback);
+		})
 	})
+
 }
 var addTask = function(data, callback) {
 	var task = new Task(data);
