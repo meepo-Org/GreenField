@@ -20,7 +20,7 @@ app.post('/user',function(req , res){
 	
 });
 app.get('/user', function (req , res) {
-	db.User.find(function (err, data) {
+	db.User.findOne({'_id' : req.session._id},function (err, data) {
 		if(err) {
 			res.send(err)
 		}
@@ -73,7 +73,7 @@ app.get('/project', function(req,res) {
 		if(err) {
 			res.send(err);
 		}
-		res.sendStatus(200);
+		res.status(200).send(data);
 	});
 });
 app.get('/tasks', function(req, res) {

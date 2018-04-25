@@ -2,12 +2,13 @@
 <nav class="navbar-inverse navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" ng-click="$window.location.href = 'index.html'">WebSiteName</a>
+      <a class="navbar-brand" href="#" >WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#"  ng-click="IsVisible = true" >Home</a></li>
+      <li class="active"><a href="#" >Home</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="#!/profile" ><span class="glyphicon glyphicon glyphicon-user"></span> Profile</a></li>
       <li><a href="#" ng-click="logout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
@@ -21,7 +22,7 @@
 	</br></br>
 	<button class="btn btn-primary" ng-click="addproject()">add</button>
 	<div ng-repeat = "project in getter">
-		<h3>{{project}}</h3>
-		<h4>{{project.projectDisc}}</h4>
+		<h3>Project Name :</h3><h4>{{project.projectName}}</h4>
+		<h3>Project Discription :</h3><h4>{{project.projectDisc}}</h4>
 	</div>
 </div>
