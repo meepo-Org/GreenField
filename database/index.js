@@ -72,6 +72,19 @@ var deleteProject = function(data,callback){
 	});
 }
 
+var changeProject = function(query,condition,callback){
+ 
+	 Project.findOneAndUpdate(query,condition,function(err,elem){
+	 	if(err){
+	 		callback(err,null)
+	 	}
+	 	callback(null,elem)
+	 });
+}
+
+
+
+
 module.exports.save = save;
 module.exports.User = User;
 module.exports.Project = Project;
@@ -79,3 +92,4 @@ module.exports.Task = Task;
 module.exports.addTask = addTask;
 module.exports.addProject = addProject;
 module.exports.deleteProject = deleteProject;
+module.exports.changeProject = changeProject;

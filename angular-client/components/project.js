@@ -5,10 +5,9 @@ app.component('project', {
 });
 
 app.controller('project' , function ($scope,$http ) {
-
   
-	var get = function () {
-	var response = {
+ var get = function () {
+    var response = {
 		method:"GET",
 		url : '/project'
 	}
@@ -19,6 +18,8 @@ app.controller('project' , function ($scope,$http ) {
 			console.log('error')
 		})
  }
+ ///////////////
+
  var post = function (data) {
 	var requestData = {
 		method :'POST',
@@ -47,7 +48,24 @@ var postD =function(data) {
 		console.log('error');
 	})
 }
-  ////////////////
+  ///////////////////
+  ///////////////////
+
+  var postChange =function(data) {
+  	console.log("dataaaaa",data)
+	var requestData = {
+		method : 'POST',
+		url : '/changeProj',
+		data : data 
+	}
+	$http(requestData).then(function () {
+		console.log('success');
+	},function () {
+		console.log('error');
+	})
+}
+  ///////////////////
+
  $scope.addproject = function () {
  	get()
  	
@@ -58,12 +76,25 @@ var postD =function(data) {
   } 
 
    $scope.deleteProject = function(project){
-	   	console.log("delete",project)
+	   	
 	   	get()
 	   	postD(project)
    }
+  /////////////////
+  $scope.sendproj = function(project) {
+  	$scope.proj = project;
+  	
+  }
+  ///////////////// 
+   $scope.changeProj = function(projectId) {
+   		get()
+    	postChange({
+ 		projectName  : $scope.newprojName,
+ 		projectDisc : $scope.newprojDesc,
+ 		_id : $scope.proj
+ 		});
 
-  
+    }
 	
 });
 
