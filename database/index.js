@@ -66,8 +66,16 @@ User.findById(data.project_id, function (err, user) {
 			  project.save();
            });
 }
-var deleteProject = function(data,callback){
-	//console.log("Dataaaa",data)
+var deleteProject = function(data,userId,callback){
+	User.findById(userId,function(err,user){
+		if(err){throw err}
+			for(var i=0; i<user.projects.length;i++){
+				if(user.projects[i]._id.toString() === data._id){
+					user.projects.splice(i,1);
+					user.save();
+				}
+			}
+	})
 	Project.deleteOne(data,function(err,elem){
 		if(err){
 			callback(err,null)

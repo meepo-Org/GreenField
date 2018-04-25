@@ -1,4 +1,5 @@
-var app = angular.module('meepo2',[])// add new parameter []
+var app = angular.module('meepo2' )
+// var app = angular.module('meepo2',[])// add new parameter []
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });
@@ -11,7 +12,6 @@ app.controller('project' , function ($scope,$http ) {
 	}
 		$http(response).then(function (res) {
 			$scope.projects = res.data
-			console.log($scope.projects)
 		},function () {
 			console.log('error')
 		})
@@ -30,7 +30,6 @@ app.controller('project' , function ($scope,$http ) {
 		console.log('error');
 	})
  }
-  get()
   ////////////////
 
 
@@ -100,13 +99,13 @@ var postD =function(data) {
 			projectName : $scope.projectName , 
 			projectDisc : $scope.projectDisc
 		});
+  		get();
 	} 
-	$scope.test = function () {
-		$window.location.href = 'index.html';
-		
-	}
+
 	$scope.logout = function () {
 		$window.location.href = 'index.html';
 		logout()
 	}
+  get()
+
 });

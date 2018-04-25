@@ -22,7 +22,7 @@ app.post('/user',function(req , res){
 	
 });
 app.get('/user', function (req , res) {
-	db.User.find(function (err, data) {
+	db.User.findOne({'_id' : req.session._id},function (err, data) {
 		if(err) {
 			res.send(err)
 		}
@@ -87,7 +87,8 @@ app.get('/project', function(req,res) {
 
 app.post('/deleteProj', function (req,res){
 	//console.log("ideeeee",req.body._id)
-	db.deleteProject({_id:req.body._id},function(err,data){
+	var userId=req.session._id;
+	db.deleteProject({_id:req.body._id},userId,function(err,data){
 		if(err){
 			res.send(err)
 		}
