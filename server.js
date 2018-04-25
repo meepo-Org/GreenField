@@ -81,7 +81,7 @@ app.get('/project', function(req,res) {
 		if(err) {
 			res.send(err);
 		}
-		res.sendStatus(200);
+		res.status(200).send(data);
 	});
 });
 
@@ -100,7 +100,7 @@ app.post('/changeProj', function (req,res){
 	var query = {projectName:req.body._id.projectName, projectDisc:req.body._id.projectDisc}
 	var newProj = {projectName:req.body.projectName,projectDisc:req.body.projectDisc}
 	console.log("query",query)
-	db.changeProject(query,{$set:newProj},function(err,data){
+	db.changeProject(query,{$set:newProj},req.session._id,function(err,data){
 		if(err){
 			res.send(err)
 		}
