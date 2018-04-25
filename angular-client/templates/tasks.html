@@ -1,22 +1,171 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="container" ng-controller="tasksCtrl">
+          <h1>ProjectName Tasks:</h1>
+            <table  class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Task Description</th>
+                  <th>Assgined To</th>
+                  <th>Task Complexity</th>
+                  <th>Status</th>
+                  </tr>
+              <thead>
+              <tbody>
+                <tr ng-repeat='task in tasksInfo'>
+                  <td>{{task.description}}</td>
+                  <td>{{task.assignedTo}}</td>
+                  <td>{{task.complexity}}</td>
+                  <td>{{task.status}}</td>
 
-	<div class='footer'>
-	<footer class="container-fluid text-center">
-  <p> Copyright</p>  
-</footer>
-</div>
+                <td><button type="button" class="btn btn-danger active" ng-click="deleteTask(task.description)">Delete</button></td>
+                <td><button type="button" class="btn btn-warning active" ng-click="getOldTaskData(task)" data-toggle="modal" data-target="#myModalEdit">Update</button></td>
+              </tr>
+            </tbody>
+            </table>
+
+  <!-- Modal Edit -->
+  <div class="modal fade" id="myModalEdit" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Task</h4>
+        </div>
+        <div class="modal-body">
+           <form class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Task Description</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="oldTask.description">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Assgined To</label>
+                <div class="col-sm-10">
+                  <select class="form-control" ng-model="oldTask.assignedTo">
+                    <option>AbdulHameed</option>
+                    <option>Abdullateef</option>
+                    <option>Qays</option>
+                    <option>Shatha</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Task Complexity</label>
+                <div class="col-sm-10">
+                  <select class="form-control" ng-model="oldTask.complexity">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>5</option>
+                    <option>8</option>
+                    <option>13</option>
+                    <option>21</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label col-sm-2" >Task Status</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" ng-model="oldTask.status">
+                      <option>Not Inatiated yet</option>
+                      <option>In Progress</option>
+                      <option>Completed</option>
+                    </select>
+                  </div>
+                </div>
+              
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" ng-click="saveChanges()">Save</button>
+                </div>
+              </div>
+            </form> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> <!-- End Edit -->
+
+  <!-- Modal Add -->
+  <div class="modal fade" id="myModalAdd" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Task</h4>
+        </div>
+        <div class="modal-body">
+           <form class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Task Description</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="description">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Assgined To</label>
+                <div class="col-sm-10">
+                  <select class="form-control" ng-model="assignedTo">
+                    <option>AbdulHameed</option>
+                    <option>Abdullateef</option>
+                    <option>Qays</option>
+                    <option>Shatha</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" >Task Complexity</label>
+                <div class="col-sm-10">
+                  <select class="form-control" ng-model="complexity">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>5</option>
+                    <option>8</option>
+                    <option>13</option>
+                    <option>21</option>
+                  </select>
+                </div>
+              </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2" >Task Status</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" ng-model="status">
+                      <option>Not Inatiated yet</option>
+                      <option>In Progress</option>
+                      <option>Completed</option>
+                    </select>
+                  </div>
+                </div>
+  
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" ng-click="addNewTask()">Add</button>
+                </div>
+              </div>
+            </form> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> <!-- End Add -->
+
+      
+          <button type="button" class="btn btn-primary active" data-toggle="modal" data-target="#myModalAdd">Add New Task</button>
+          </div>

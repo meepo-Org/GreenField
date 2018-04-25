@@ -73,8 +73,9 @@ app.get('/tasks', function(req, res) {
 	});
 });
 
-app.get('/tasks', function(req, res) {
-	db.Task.find({}, function(err, data) {
+
+app.get('/tasks/:description', function(req, res) {
+	db.Task.findOne({description: req.params.description}, function(err, data) {
 		if(err) {
 			res.send(err);
 		}
@@ -83,33 +84,36 @@ app.get('/tasks', function(req, res) {
 });
 
 
-// app.get('/tasks/:description', function(req, res) {
-// 	db.Task.findOne({}, function(err, data) {
-// 		if(err) {
-// 			res.send(err);
-// 		}
-// 		res.status(200).send(data);
-// 	});
-// });
-
 app.post('/tasks', function(req, res) {
 	console.log(req.body);
 	db.addTask(req.body, function(err, data) {
 		if(err) {
-			res.send("there is an error :(")
+			res.send(err)
 		}
-		res.status(201).send("Here is your added task ", data);
+		res.status(201).send(data);
 	});
 });
 
 app.post('/deleteTask', function(req, res){
-	//console.log(req.body);
 		db.deleteTask({description: req.body.description}, function (err, data) {
 			if(err){
-				res.send("there is an error :(");
+				res.send(err);
 			}
-			res.send("Data has been deleted ", data);
+			res.status(200).send(data);
 		});
+});
+
+app.post('/updateTask', function(req, res){
+	
+	var query = req.body.oldData;
+	var newData = req.body.newData;
+	
+	db.updateTask(query, {$set: newData}, function(err, data){
+		if(err) {
+			res.send(err);
+		}
+		res.status(200).send(data);
+	});
 });
 
 // app.delete('/tasks', function(req, res){

@@ -62,6 +62,15 @@ var deleteTask = function(data, callback) {
 	});
 }
 
+var updateTask = function(query, newData, callback) {
+	Task.findOneAndUpdate(query, newData, {new: true}, function(err, data2){
+		if(err){
+			callback(err, null);
+		}
+			callback(null, data2);
+	});
+}
+
 var addProject = function(data, callback) {
 	var project = new Project(data);
 	project.save(function(err,elem){
@@ -78,4 +87,5 @@ module.exports.Project = Project;
 module.exports.Task = Task;
 module.exports.addTask = addTask;
 module.exports.deleteTask = deleteTask;
+module.exports.updateTask = updateTask;
 module.exports.addProject = addProject;
