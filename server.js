@@ -87,7 +87,8 @@ app.get('/project', function(req,res) {
 
 app.post('/deleteProj', function (req,res){
 	//console.log("ideeeee",req.body._id)
-	db.deleteProject({_id:req.body._id},function(err,data){
+	var userId=req.session._id;
+	db.deleteProject({_id:req.body._id},userId,function(err,data){
 		if(err){
 			res.send(err)
 		}

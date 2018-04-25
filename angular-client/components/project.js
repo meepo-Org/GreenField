@@ -12,7 +12,6 @@ app.controller('project' , function ($scope,$http ) {
 	}
 		$http(response).then(function (res) {
 			$scope.projects = res.data
-			console.log($scope.projects)
 		},function () {
 			console.log('error')
 		})
@@ -31,7 +30,6 @@ app.controller('project' , function ($scope,$http ) {
 		console.log('error');
 	})
  }
-  get()
   ////////////////
 
 
@@ -101,10 +99,13 @@ var postD =function(data) {
 			projectName : $scope.projectName , 
 			projectDisc : $scope.projectDisc
 		});
+  		get();
 	} 
+
 	$scope.logout = function () {
 		$window.location.href = 'index.html';
 		logout()
 	}
+  get()
 
 });
