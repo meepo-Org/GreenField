@@ -1,4 +1,5 @@
 var app = angular.module('meepo2' )
+// var app = angular.module('meepo2',[])// add new parameter []
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });

@@ -30,9 +30,9 @@ app.controller('signup' , function ($scope,$http ) {
 
   $scope.done = function () {
   post({
-		username : $scope.name ,
-		password : $scope.password , 
-		email : $scope.email
+		username : $scope.username ,
+		email : $scope.email,
+		password : $scope.password
       })
 	get()
   }
