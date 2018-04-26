@@ -77,11 +77,15 @@ app.post('/project',function(req , res) {
 	res.sendStatus(200);
 });
 app.get('/project', function(req,res) {
-	db.Project.find({} ,function(err,data) {
-		if(err) {
-			res.send(err);
-		}
-		res.status(200).send(data);
+	db.User.findOne({'_id':req.session._id},function (err, user) {
+	// db.Project.find({} ,function(err,project) {
+	// 	if(err) {
+	// 		res.send(err);
+	// 	}
+	// 	res.status(200).send(project);
+	//   });
+	if(err){res.send(err)}
+		res.status(200).send(user.projects);
 	});
 });
 
@@ -108,11 +112,16 @@ app.post('/changeProj', function (req,res){
 		res.send(data)
 	});
 });
- 
+ let projectId;
+ app.post('/projectId',function(req,res){
+ 	projectId=req.body.projectId;
+ 	//console.log("req body iddd project",projectId, typeof projectId);
+ })
 
 //Routes for Tasks :)
 
 app.get('/tasks', function(req, res) {
+	console.log("req body iddd project",projectId, typeof projectId);
 	db.Task.find({}, function(err, data) {
 		if(err) {
 			res.send(err);
@@ -133,13 +142,42 @@ app.get('/tasks/:description', function(req, res) {
 
 
 app.post('/tasks', function(req, res) {
-	console.log(req.body);
-	db.addTask(req.body, function(err, data) {
-		if(err) {
-			res.send(err)
-		}
-		res.status(201).send(data);
-	});
+	console.log("task req body",req.body);
+	// db.addTask(req.body, function(err, data) {
+	// 	if(err) {
+	// 		res.send(err)
+	// 	}
+	// 	res.status(201).send(data);
+	// });
+	/////////
+		db.User.findOne({'_id':req.session._id},function (err, data) {
+		if(err){res.sendStatus(404)}
+			if(data !== null){
+				db.Project.findOne({_id:projectId},function(err,pro){
+					if(err){res.sendStatus(404)}
+			        if(pro !== null){
+			        	var task={};
+						task['description']=req.body.description;
+						task['assignedTo']=req.body.assignedTo;
+						task['complexity']=req.body.complexity;
+						task['status']=req.body.status;
+
+
+						task['project_id']=projectId;
+						task['user_id']=req.session._id;
+						db.addTask(task , function (err , data) {
+								if(err) {
+									res.send(err)
+								}
+								res.sendStatus(200);
+				               });	
+
+			        }
+				});
+
+			}
+		});
+	res.sendStatus(200);
 });
 
 app.post('/deleteTask', function(req, res){
