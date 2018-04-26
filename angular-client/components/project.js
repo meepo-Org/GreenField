@@ -3,7 +3,8 @@ var app = angular.module('meepo2' )
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });
-app.controller('project' , function ($scope,$http,$window) {
+
+app.controller('project' , function ($scope,$http,$window ) {
   
  var get = function () {
     var response = {
@@ -106,6 +107,10 @@ var postD =function(data) {
 		$window.location.href = 'index.html';
 		logout()
 	}
+	$scope.addTask = function () {
+		$window.location.href = 'app3.html'
+	}
   get()
 
 });
+

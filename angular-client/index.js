@@ -18,3 +18,18 @@ app.config(function($routeProvider) {
         templateUrl:"templates/project.html"
     })
 })
+
+app2 = angular.module('meepo2' , ["ngRoute"]);
+
+app2.config(['$routeProvider' , function($routeProvider) {
+    $routeProvider
+    .when("/profile", {
+        templateUrl : "templates/profile.html"
+    })
+    .when("/tasks", {
+        templateUrl : "templates/tasks.html"
+    })
+
+}])
+
+var app3 = angular.module('meepo3' , []);
