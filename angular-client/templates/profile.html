@@ -1,0 +1,36 @@
+<div ng-controller='profile'>
+	<h1>Profile</h1>
+		<div class="container">
+				<div class="profile">    	
+					<img align="left" class="image-lg img-fluid" src="images/blank-business-composition-373076.jpg" alt="Profile" />
+					<img align="left" class="image-profile img-circle" src="images/Portrait_Placeholder.jpg" alt="Profile image example" />
+					<div class="profile-text">
+						<h1>{{user.username}}</h1>
+						<p>Discription</p>
+					</div>
+				</div>
+			</div> 
+
+	<div class="container text-center">    
+		<div class="row" >
+			<div class="col-sm-5 well" style="background-color: black;">
+				<div class="well">
+					<h3>Disc</h3>
+					<h3>Disc</h3>
+					<h3>Disc</h3>
+					<h3>Disc</h3>
+				</div>      
+			</div>
+
+			<div class="col-sm-7 well" >
+				<div class="well" >
+					<h2>My Projects</h2>
+					<div ng-repeat='proj in user.projects'>
+					<h3>{{proj.projectName}}</h3>
+					</div>
+				</div>      
+			</div>
+
+		</div>
+	</div>
+</div>

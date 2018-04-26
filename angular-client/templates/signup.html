@@ -12,22 +12,21 @@
               <form action="#">
                 <div class="form-group">
                   <label for="UserName">Full name</label>
-                  <input type="text" class="form-control"  ng-model="name" placeholder="Name Please">
+                  <input type="text" class="form-control"  ng-model="username" placeholder="Name Please" required>
                 </div>
                 <div class="form-group">
                   <label for="email">Email address:</label>
-                  <input type="email" class="form-control"  ng-model="email" placeholder="Email !!">
+                  <input type="email" class="form-control"  ng-model="email" placeholder="Email !!" required>
                 </div>
                 <div class="form-group">
                   <label for="pwd">Password:</label>
-                  <input type="password" class="form-control"  ng-model="password" placeholder="U C me">
+                  <input type="password" class="form-control"  ng-model="password" placeholder="U C me" required>
                 </div>
                 <div class="form-group">
                   <label for="pwd">Confirm Password:</label>
-                  <input type="password" class="form-control" placeholder="U C me again">
+                  <input type="password" class="form-control" ng-model="password2" placeholder="U C me again" required>
                 </div>
                 <button type="submit" class="btn btn-default btn-lg" ng-click="done()" data-dismiss="modal" >Sign up</button>
-                <a href=""><button type="submit" class="pull-right btn-link main">Forget password</button></a>
               </form>
               <br/>
             </div>
@@ -37,3 +36,12 @@
     </div>
   </div>
 </div>
+
+<style>
+input.ng-invalid {
+  background-color:pink;
+}
+input.ng-valid {
+  background-color:lightgreen;
+}
+</style>
