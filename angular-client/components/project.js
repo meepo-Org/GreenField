@@ -3,6 +3,7 @@ var app = angular.module('meepo2' )
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });
+
 app.controller('project' , function ($scope,$http,$window ) {
   
  var get = function () {
