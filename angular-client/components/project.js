@@ -125,3 +125,50 @@ var postD =function(data) {
 
 });
 
+
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare a loop variable
+var i;
+
+// List View
+function listView() {
+    for (i = 0; i < elements.length; i++) {
+        elements[i].style.width = "100%";
+    }
+}
+
+// Grid View
+function gridView() {
+    for (i = 0; i < elements.length; i++) {
+        elements[i].style.width = "50%";
+    }
+}
+
+/* Optional: Add active class to the current button (highlight it) */
+var container = document.getElementById("btnContainer");
+var btns = container.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
