@@ -19,7 +19,7 @@
 
   <div ng-view></div>
 
-    <div>
+
       <div class="container">
         <div id="btnContainer">
           <li class="fa fa-search"></li><input type="text" id="myInput" placeholder="Search for names.." ng-model="searchText">
@@ -69,17 +69,6 @@
            </td>
          </tr>
 
-
- <!-- user can add new project here -->
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="control-label col-sm-2">Project Name:</label>
-              <div class="col-sm-10">
-                <!-- Input for New project name, we will use ng-model in our Ajax file to send this field value to the server -->
-                <input type="text" class="form-control" ng-model="newprojName" placeholder="Change Your Project Name">
-              </div>
-            </div>
-
   <!-- projects are all our projects details in our dataBase-->
          <tr ng-repeat = "project in projects" >
           <td>{{$index+1}}.</td>
@@ -102,9 +91,10 @@
               </div>
               <div class="modal-body">
 
+ <!-- user can add new project here -->
                 <form class="form-horizontal" role="form">
                   <div class="form-group">
-                    <label class="control-label col-sm-2">Project Name:</label>
+                    <label class="control-label col-sm-2">Project New Name:</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" ng-model="newprojName" placeholder="Change Your Project Name">
                     </div>
@@ -130,9 +120,9 @@
 
               </div>
             </div>
+
           </div>
         </div>
       </tbody>
     </table>
-</div>
 </div>
