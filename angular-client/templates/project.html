@@ -1,5 +1,6 @@
 <div  ng-controller='project' style="top:150px;">
 
+<!-- this section for navigation Bar-->
   <nav class="navbar-inverse navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -14,6 +15,8 @@
       </ul>
     </div>
   </nav>
+<!-- End Navigation Bar section--> 
+
   <div ng-view></div>
 
     <div>
@@ -67,20 +70,31 @@
          </tr>
 
 
+ <!-- user can add new project here -->
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="control-label col-sm-2">Project Name:</label>
+              <div class="col-sm-10">
+                <!-- Input for New project name, we will use ng-model in our Ajax file to send this field value to the server -->
+                <input type="text" class="form-control" ng-model="newprojName" placeholder="Change Your Project Name">
+              </div>
+            </div>
+
+  <!-- projects are all our projects details in our dataBase-->
          <tr ng-repeat = "project in projects" >
           <td>{{$index+1}}.</td>
           <td style="font-family: Lobster">{{project.projectName}}</td>
           <td style="font-family: Lobster">{{project.projectDisc}}</td>
           <td><button class="btn btn-block btn-info" ng-click="addTask(project._id)">Tasks</button></td>
           <td><button class="btn btn-block btn-danger" ng-click="deleteProject(project)">Delete</button></td>
+    <!-- we used data-target to connect this button on Modal fadeout-->
           <td><button class="btn btn-block btn-primary" ng-click="sendproj(project)" data-target="#myModalEdit" data-toggle="modal">Update</button></td>
         </tr>
 
-        <!-- Modal -->
+  <!-- Modal fadeout, this will appear for user when he press on update button-->
         <div class="modal fade" id="myModalEdit" role="dialog">
           <div class="modal-dialog">
 
-            <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -113,6 +127,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
               </div>
             </div>
           </div>

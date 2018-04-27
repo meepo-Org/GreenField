@@ -47,6 +47,8 @@ app.post('/login', function (req , res) {
 		});
 });
 
+
+// if the session has username we are going to kill it, to logout 
 app.get('/logout',function(req,res){
 	if(req.session.username){
 		req.session.destroy(function(err){
@@ -60,6 +62,7 @@ app.get('/logout',function(req,res){
 
 });
 
+// route to add new project for the user in this session 
 app.post('/project',function(req , res) {
 	db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
@@ -79,6 +82,7 @@ app.post('/project',function(req , res) {
 	res.sendStatus(200);
 });
 
+// route to get all projects for user 
 app.get('/project', function(req,res) {
 	db.User.findOne({'_id':req.session._id},function (err, user) {
 		if(err){res.send(err)}
@@ -86,6 +90,7 @@ app.get('/project', function(req,res) {
 	});
 });
 
+// route to delete a specific project 
 app.post('/deleteProj', function (req,res){
 	var userId=req.session._id;
 	db.deleteProject({_id:req.body._id},userId,function(err,data){
@@ -96,6 +101,7 @@ app.post('/deleteProj', function (req,res){
 	});
 });
 
+// route to update project 
 app.post('/changeProj', function (req,res){
 	var query = {projectName:req.body._id.projectName, projectDisc:req.body._id.projectDisc}
 	var newProj = {projectName:req.body.projectName,projectDisc:req.body.projectDisc}
