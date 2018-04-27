@@ -50,16 +50,16 @@ var save = function (newUser , callback) {
 }
 var addTask = function(data, callback) {
 	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status});
-	console.log("user idd",data.user_id);
+	//console.log("user idd",data.user_id);
 
 	User.findById(data.user_id, function (err, user) {
 			  if (err) return handleError(err);
 			  for(var i=0; i<user.projects.length ;i++){
-			  	console.log("projects[i] _id",user.projects[i]._id,typeof user.projects[i]._id);
-			  	console.log("data.project_id",data.project_id ,typeof data.project_id);
+			  //	console.log("projects[i] _id",user.projects[i]._id,typeof user.projects[i]._id);
+			  //	console.log("data.project_id",data.project_id ,typeof data.project_id);
 
 			  	if(user.projects[i]._id.toString() === data.project_id){
-			  		console.log("I am in if statement")
+			  		//console.log("I am in if statement")
 			  		Project.findById(data.project_id,function(err,project){
 			  			project.tasks.push(task);
 			  			project.save();
@@ -83,8 +83,30 @@ var addTask = function(data, callback) {
 	// });
 }
 
-var deleteTask = function(data, callback) {
-	Task.deleteOne(data, function (err, data2) {
+var deleteTask = function(taskDesc,userId,projectId ,callback) {
+	User.findById(userId,function(err,user){
+		if(err){throw err}
+			for(var i=0;i<user.projects.length ;i++){
+				if(user.projects[i]._id.toString() === projectId){
+					for(var j=0;j<user.projects[i].tasks.length;j++){
+						if(user.projects[i].tasks[j].description === taskDesc.description){
+							user.projects[i].tasks.splice(j,1);
+							user.save();
+						}
+					}
+				}
+			}
+	})
+	Project.findById(projectId,function(err,proj){
+		if(err){throw err}
+			for(var i=0;i<proj.tasks.length;i++){
+				if(proj.tasks[i].description === taskDesc.description){
+					proj.tasks.splice(i,1)
+					proj.save();
+				}
+			}
+	})
+	Task.deleteOne(taskDesc, function (err, data2) {
 		if(err){
 			callback(err, null);
 		}
