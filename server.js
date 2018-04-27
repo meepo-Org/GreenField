@@ -99,7 +99,6 @@ app.post('/deleteProj', function (req,res){
 app.post('/changeProj', function (req,res){
 	var query = {projectName:req.body._id.projectName, projectDisc:req.body._id.projectDisc}
 	var newProj = {projectName:req.body.projectName,projectDisc:req.body.projectDisc}
-	//console.log("query",query)
 	db.changeProject(query,{$set:newProj},req.session._id,function(err,data){
 		if(err){
 			res.send(err)
@@ -115,7 +114,6 @@ app.post('/projectId',function(req,res){
 //Routes for Tasks :)
 
 app.get('/tasks', function(req, res) {
-	//console.log("req body iddd project",projectId, typeof projectId);
 	db.User.findOne({'_id':req.session._id},function(err,user){
 		if(err){
 			res.send(err);
@@ -126,12 +124,6 @@ app.get('/tasks', function(req, res) {
 			}
 		}
 	})
-	// db.Task.find({}, function(err, data) {
-	// 	if(err) {
-	// 		res.send(err);
-	// 	}
-	// 	res.status(200).send(data);
-	// });
 });
 
 
@@ -146,19 +138,7 @@ app.get('/tasks/:description', function(req, res) {
 
 
 app.post('/tasks', function(req, res) {
-<<<<<<< HEAD
 	db.User.findOne({'_id':req.session._id},function (err, data) {
-=======
-	//console.log("task req body",req.body);
-	// db.addTask(req.body, function(err, data) {
-	// 	if(err) {
-	// 		res.send(err)
-	// 	}
-	// 	res.status(201).send(data);
-	// });
-	/////////
-		db.User.findOne({'_id':req.session._id},function (err, data) {
->>>>>>> bd28c587e1a543de38409e63ebe0925453a16a3e
 		if(err){res.sendStatus(404)}
 			if(data !== null){
 				db.Project.findOne({_id:projectId},function(err,pro){
@@ -188,21 +168,12 @@ app.post('/tasks', function(req, res) {
 });
 
 app.post('/deleteTask', function(req, res){
-<<<<<<< HEAD
-	db.deleteTask({description: req.body.description}, function (err, data) {
-		if(err){
-			res.send(err);
-		}
-		res.status(200).send(data);
-	});
-=======
 		db.deleteTask({description: req.body.description},req.session._id,projectId, function (err, data) {
 			if(err){
 				res.send(err);
 			}
 			res.status(200).send(data);
 		});
->>>>>>> bd28c587e1a543de38409e63ebe0925453a16a3e
 });
 
 app.post('/updateTask', function(req, res){
