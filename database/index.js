@@ -67,8 +67,30 @@ var addTask = function(data, callback) {
 	});
 }
 
-var deleteTask = function(data, callback) {
-	Task.deleteOne(data, function (err, data2) {
+var deleteTask = function(taskDesc,userId,projectId ,callback) {
+	User.findById(userId,function(err,user){
+		if(err){throw err}
+			for(var i=0;i<user.projects.length ;i++){
+				if(user.projects[i]._id.toString() === projectId){
+					for(var j=0;j<user.projects[i].tasks.length;j++){
+						if(user.projects[i].tasks[j].description === taskDesc.description){
+							user.projects[i].tasks.splice(j,1);
+							user.save();
+						}
+					}
+				}
+			}
+	})
+	Project.findById(projectId,function(err,proj){
+		if(err){throw err}
+			for(var i=0;i<proj.tasks.length;i++){
+				if(proj.tasks[i].description === taskDesc.description){
+					proj.tasks.splice(i,1)
+					proj.save();
+				}
+			}
+	})
+	Task.deleteOne(taskDesc, function (err, data2) {
 		if(err){
 			callback(err, null);
 		}
@@ -76,8 +98,41 @@ var deleteTask = function(data, callback) {
 	});
 }
 
-var updateTask = function(query, newData, callback) {
-	Task.findOneAndUpdate(query, newData, {new: true}, function(err, data2){
+var updateTask = function(query, newData,userId,projectId , callback) {
+	console.log('queryy',query)
+	console.log('newData',newData)
+	User.findById(userId,function(err,user){
+				if(err){throw err}
+			for(var i=0;i<user.projects.length ;i++){
+				if(user.projects[i]._id.toString() === projectId){
+					for(var j=0;j<user.projects[i].tasks.length;j++){
+						if(user.projects[i].tasks[j]._id.toString() === query._id.toString()){
+							user.projects[i].tasks[j].description=newData.description;
+							user.projects[i].tasks[j].assignedTo=newData.assignedTo;
+							user.projects[i].tasks[j].complexity=newData.complexity;
+							user.projects[i].tasks[j].status=newData.status;
+
+							user.save();
+						}
+					}
+				}
+			}
+	})
+	Project.findById(projectId,function(err,proj){
+		if(err){throw err}
+			for(var i=0;i<proj.tasks.length;i++){
+				if(proj.tasks[i]._id.toString() === query._id.toString()){
+					proj.tasks[i].description=newData.description;
+					proj.tasks[i].assignedTo=newData.assignedTo;
+					proj.tasks[i].complexity=newData.complexity;
+					proj.tasks[i].status=newData.status;
+
+					proj.save();
+				}
+			}
+	})
+
+	Task.findOneAndUpdate(query, newData, function(err, data2){
 		if(err){
 			callback(err, null);
 		}
