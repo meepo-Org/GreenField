@@ -181,7 +181,7 @@ app.post('/tasks', function(req, res) {
 });
 
 app.post('/deleteTask', function(req, res){
-		db.deleteTask({description: req.body.description}, function (err, data) {
+		db.deleteTask({description: req.body.description},req.session._id,projectId, function (err, data) {
 			if(err){
 				res.send(err);
 			}
