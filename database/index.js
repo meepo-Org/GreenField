@@ -29,8 +29,6 @@ var userSchema = mongoose.Schema({
 	
 });
 
-
-
 var User = mongoose.model("User" , userSchema);
 var Project = mongoose.model("Project" , projectSchama);
 var Task = mongoose.model('Task', taskSchema);
@@ -38,11 +36,11 @@ var save = function (newUser , callback) {
 	bcrypt.genSalt(10,function(err,salt){
 		bcrypt.hash(newUser.password,salt,function(err,hash){
 			newUser.password=hash;
-				var user = new User(newUser);
-             	user.save(function (err , elem) {
-		        if(err){callback(err, null)}
-		     	callback(null ,elem)
-	             })
+			var user = new User(newUser);
+			user.save(function (err , elem) {
+				if(err){callback(err, null)}
+					callback(null ,elem)
+			})
 			//newUser.save(callback);
 		})
 	})
@@ -50,37 +48,23 @@ var save = function (newUser , callback) {
 }
 var addTask = function(data, callback) {
 	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status});
-	//console.log("user idd",data.user_id);
-
 	User.findById(data.user_id, function (err, user) {
-			  if (err) return handleError(err);
-			  for(var i=0; i<user.projects.length ;i++){
-			  //	console.log("projects[i] _id",user.projects[i]._id,typeof user.projects[i]._id);
-			  //	console.log("data.project_id",data.project_id ,typeof data.project_id);
+		if (err) return handleError(err);
+		for(var i=0; i<user.projects.length ;i++){
+			if(user.projects[i]._id.toString() === data.project_id){
+				Project.findById(data.project_id,function(err,project){
+					project.tasks.push(task);
+					project.save();
+				})
+				user.projects[i].tasks.push(task);
 
-			  	if(user.projects[i]._id.toString() === data.project_id){
-			  		//console.log("I am in if statement")
-			  		Project.findById(data.project_id,function(err,project){
-			  			project.tasks.push(task);
-			  			project.save();
-			  		})
-			  		user.projects[i].tasks.push(task);
-
-			  		user.save();
-			  		task.save();
-			  	}
-			  }
-			  
-			  
-           });
-	/////////
-	// task.save(function(err, data2) {
-	// 	if(err)
-	// 	{
-	// 		callback(err, null);
-	// 	}
-	// 	callback(null, data2);
-	// });
+				user.save();
+				task.save();
+			}
+		}
+		
+		
+	});
 }
 
 var deleteTask = function(taskDesc,userId,projectId ,callback) {
@@ -152,19 +136,19 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 		if(err){
 			callback(err, null);
 		}
-			callback(null, data2);
+		callback(null, data2);
 	});
 }
 
 // this function to add project to the user schema and project schema
 var addProject = function(data, callback) {
-var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc});
-User.findById(data.project_id, function (err, user) {
-			  if (err) return handleError(err);
-			  user.projects.push(project);
-			  user.save();
-			  project.save();
-           });
+	var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc});
+	User.findById(data.project_id, function (err, user) {
+		if (err) return handleError(err);
+		user.projects.push(project);
+		user.save();
+		project.save();
+	});
 }
 var deleteProject = function(data,userId,callback){
 	User.findById(userId,function(err,user){
@@ -175,7 +159,7 @@ var deleteProject = function(data,userId,callback){
 					user.save();
 				}
 			}
-	})
+		})
 	Project.deleteOne(data,function(err,elem){
 		if(err){
 			callback(err,null)
@@ -185,27 +169,27 @@ var deleteProject = function(data,userId,callback){
 }
 
 var changeProject = function(query,condition,userId,callback){
- User.findById(userId, function (err, user) {
-	 	if(err){
-	 		throw err;
-	 	}
-	 	for(var i=0;i<user.projects.length;i++){
-	 		if(query.projectName === user.projects[i].projectName && query.projectDisc === user.projects[i].projectDisc ){
-	 			user.projects[i].projectName=condition.$set.projectName;
-	 			user.projects[i].projectDisc=condition.$set.projectDisc;
-	 			user.save();
-	 		}
-	 	}
+	User.findById(userId, function (err, user) {
+		if(err){
+			throw err;
+		}
+		for(var i=0;i<user.projects.length;i++){
+			if(query.projectName === user.projects[i].projectName && query.projectDisc === user.projects[i].projectDisc ){
+				user.projects[i].projectName=condition.$set.projectName;
+				user.projects[i].projectDisc=condition.$set.projectDisc;
+				user.save();
+			}
+		}
 
-	 	
+		
 
- });
-	 Project.findOneAndUpdate(query,condition,function(err,elem){
-	 	if(err){
-	 		callback(err,null)
-	 	}
-	 	callback(null,elem)
-	 });
+	});
+	Project.findOneAndUpdate(query,condition,function(err,elem){
+		if(err){
+			callback(err,null)
+		}
+		callback(null,elem)
+	});
 }
 
 module.exports.save = save;

@@ -35,17 +35,18 @@ app.post('/login', function (req , res) {
 			if(data !== null){
 				bcrypt.compare(req.body.password, data.password, function(err, resCrypt) {
 					if(err){res.sendStatus(404)}
-					if(resCrypt){
+						if(resCrypt){
 							req.session._id=data._id;
 							req.session.username=data.username;
 							req.session.password=data.password;
 							res.sendStatus(200)
-					}
-                });
+						}
+					});
 
 			}
 		});
 });
+
 
 // if the session has username we are going to kill it, to logout 
 app.get('/logout',function(req,res){
@@ -84,20 +85,13 @@ app.post('/project',function(req , res) {
 // route to get all projects for user 
 app.get('/project', function(req,res) {
 	db.User.findOne({'_id':req.session._id},function (err, user) {
-	// db.Project.find({} ,function(err,project) {
-	// 	if(err) {
-	// 		res.send(err);
-	// 	}
-	// 	res.status(200).send(project);
-	//   });
-	if(err){res.send(err)}
-		res.status(200).send(user.projects);
+		if(err){res.send(err)}
+			res.status(200).send(user.projects);
 	});
 });
 
 // route to delete a specific project 
 app.post('/deleteProj', function (req,res){
-	//console.log("ideeeee",req.body._id)
 	var userId=req.session._id;
 	db.deleteProject({_id:req.body._id},userId,function(err,data){
 		if(err){
@@ -109,10 +103,8 @@ app.post('/deleteProj', function (req,res){
 
 // route to update project 
 app.post('/changeProj', function (req,res){
-	
 	var query = {projectName:req.body._id.projectName, projectDisc:req.body._id.projectDisc}
 	var newProj = {projectName:req.body.projectName,projectDisc:req.body.projectDisc}
-	//console.log("query",query)
 	db.changeProject(query,{$set:newProj},req.session._id,function(err,data){
 		if(err){
 			res.send(err)
@@ -120,16 +112,14 @@ app.post('/changeProj', function (req,res){
 		res.send(data)
 	});
 });
- let projectId;
- app.post('/projectId',function(req,res){
- 	projectId=req.body.projectId;
- 	//console.log("req body iddd project",projectId, typeof projectId);
- })
+let projectId;
+app.post('/projectId',function(req,res){
+	projectId=req.body.projectId;
+})
 
 //Routes for Tasks :)
 
 app.get('/tasks', function(req, res) {
-	//console.log("req body iddd project",projectId, typeof projectId);
 	db.User.findOne({'_id':req.session._id},function(err,user){
 		if(err){
 			res.send(err);
@@ -140,12 +130,6 @@ app.get('/tasks', function(req, res) {
 			}
 		}
 	})
-	// db.Task.find({}, function(err, data) {
-	// 	if(err) {
-	// 		res.send(err);
-	// 	}
-	// 	res.status(200).send(data);
-	// });
 });
 
 
@@ -160,38 +144,29 @@ app.get('/tasks/:description', function(req, res) {
 
 
 app.post('/tasks', function(req, res) {
-	//console.log("task req body",req.body);
-	// db.addTask(req.body, function(err, data) {
-	// 	if(err) {
-	// 		res.send(err)
-	// 	}
-	// 	res.status(201).send(data);
-	// });
-	/////////
-		db.User.findOne({'_id':req.session._id},function (err, data) {
+	db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
 				db.Project.findOne({_id:projectId},function(err,pro){
 					if(err){res.sendStatus(404)}
-			        if(pro !== null){
-			        	var task={};
-						task['description']=req.body.description;
-						task['assignedTo']=req.body.assignedTo;
-						task['complexity']=req.body.complexity;
-						task['status']=req.body.status;
+						if(pro !== null){
+							var task={};
+							task['description']=req.body.description;
+							task['assignedTo']=req.body.assignedTo;
+							task['complexity']=req.body.complexity;
+							task['status']=req.body.status;
 
 
-						task['project_id']=projectId;
-						task['user_id']=req.session._id;
-						db.addTask(task , function (err , data) {
+							task['project_id']=projectId;
+							task['user_id']=req.session._id;
+							db.addTask(task , function (err , data) {
 								if(err) {
 									res.send(err)
 								}
 								res.sendStatus(200);
-				               });	
-
-			        }
-				});
+							});	
+						}
+					});
 
 			}
 		});
@@ -229,7 +204,7 @@ app.post('/updateTask', function(req, res){
 
 // 	});
 // })
-  
+
 var port = 1596
 app.listen(process.env.PORT || port , function () {
 	console.log("server is listening "+ port +" Port")
