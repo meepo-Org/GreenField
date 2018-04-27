@@ -156,6 +156,7 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 	});
 }
 
+// this function to add project to the user schema and project schema
 var addProject = function(data, callback) {
 var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc});
 User.findById(data.project_id, function (err, user) {
