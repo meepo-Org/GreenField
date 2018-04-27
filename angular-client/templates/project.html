@@ -28,11 +28,11 @@
         <div class="row" >
           <div class="column" style="background-color:#bbb;" ng-repeat = "project in projects | filter:searchText">
             <div class="w3-container">
-              <ul class="w3-ul w3-card-4 w3-hoverable " ng-click="addTask(project._id)">
+              <ul class="w3-ul w3-card-4 w3-hoverable ">
                 <li class="w3-bar">
-                  <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+                  <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right" >×</span>
                   <h3 class="w3-bar-item  w3-hide-small" style="width:85px">{{$index+1}}</h3>
-                  <div class="w3-bar-item">
+                  <div class="w3-bar-item" ng-click="addTask(project._id)">
                     <span class="w3-large">{{project.projectName}}</span><br>
                     <span>{{project.projectDisc}}</span>
                     <span class="badge badge-primary badge-pill">{{project.tasks.length}}</span>

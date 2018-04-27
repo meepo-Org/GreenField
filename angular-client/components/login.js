@@ -9,6 +9,7 @@ app.controller('login' , function ($scope,$http,$window ) {
 			url : '/login'
 		}
 		$http(response).then(function (data) {
+			console.log(data)
 			$scope.getter = data.data;
 		},function () {
 			console.log('error')

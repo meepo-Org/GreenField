@@ -175,7 +175,6 @@ textarea {
     color: white;
 }
 #myInput {
-  background-image: url('/css/searchicon.png');
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 50%;
@@ -185,13 +184,3 @@ textarea {
   margin-bottom: 12px;
 }
 /*********************/
-.btn {
-  margin: 0 .5em;
-  border-radius: 2em;
-  padding: 0.75em 1.5em;
-  cursor: pointer;
-  border: 5px solid;
-  letter-spacing: 1px;
-  border: 5px solid ;
-  transition: 250ms ;
-  }

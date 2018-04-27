@@ -123,9 +123,6 @@ var postD =function(data) {
 	}
   get()
 
-  $scope.aa = function () {
-  	console.log('aaaa')
-  }
 });
 
 
