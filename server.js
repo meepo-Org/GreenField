@@ -89,6 +89,10 @@ app.get('/project', function(req,res) {
 			res.status(200).send(user.projects);
 	});
 });
+let projectId;
+app.post('/projectId',function(req,res){
+	projectId=req.body.projectId;
+})
 
 // route to delete a specific project 
 app.post('/deleteProj', function (req,res){
@@ -112,10 +116,6 @@ app.post('/changeProj', function (req,res){
 		res.send(data)
 	});
 });
-let projectId;
-app.post('/projectId',function(req,res){
-	projectId=req.body.projectId;
-})
 
 //Routes for Tasks :)
 
@@ -194,16 +194,6 @@ app.post('/updateTask', function(req, res){
 		res.status(200).send(data);
 	});
 });
-
-// app.delete('/tasks', function(req, res){
-// 	db.deleteTask({description: req.body.description}, function (err, data) {
-// 		if(err){
-// 			res.send("there is an error :(");
-// 		}
-// 		res.send("Data has been deleted ", data);
-
-// 	});
-// })
 
 var port = 1596
 app.listen(process.env.PORT || port , function () {
