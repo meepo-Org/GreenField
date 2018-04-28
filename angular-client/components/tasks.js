@@ -4,6 +4,7 @@ app.component('tasks', {
 	templateUrl: '/templates/tasks.html'
 });
 
+
 app.controller('tasksCtrl', function ($scope, $http,$window){
 	// get all existing tasks in db 
 	var get = function () {
@@ -77,5 +78,9 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  		post(updattedTask,'/updateTask');
  		$window.location.reload();
 
+ 	}
+ 	$scope.Back = function () {
+	$window.location.href = 'app2.html'
+ 		
  	}
 });
