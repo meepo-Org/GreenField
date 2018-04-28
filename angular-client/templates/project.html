@@ -21,11 +21,29 @@
   </nav>
   <!-- End Navigation Bar section--> 
 
-
-
   <div ng-view></div>
 
   <div class="container">
+    <form>
+    <div class="row">
+        <div class="col">
+            <!-- Material input -->
+           <h3> Project Name : </h3> 
+            <div class="md-form mt-0">
+               <input type="text" class="form-control" name="project-name" " placeholder="Type project name" ng-model="projectName">
+            </div>
+        </div>
+        <div class="col">
+          <h3>Project Discription : </h3>
+            <div class="md-form mt-0">
+                <input type="text" class="form-control" name="project-desc" placeholder="Type project description"  ng-model="projectDisc">
+            </div>
+        </div>
+        <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+</form>
+<button type="button" class="btn btn-primary btn-rounded" ng-click="addproject()">Add</button>
 
     <div class="container">
       <div id="btnContainer" class="md-form mt-0">
@@ -38,7 +56,7 @@
       <div class="row" >
         <div class="column"  ng-repeat = "project in projects | filter:searchText">
           <div class="w3-container">
-            <ul class="w3-ul  w3-hoverable ">
+            <ul class="w3-ul  w3-hoverable " >
               <li class="w3-bar" style="border: 2px solid black; padding: 10px; border-radius: 25px;" >
 
                 <div class="w3-card w3-animate-right " style="right:0; align-items: center;" id="rightMenu" ng-show="bar">
@@ -49,14 +67,14 @@
 
                 <div class="w3-teal">
                   <button class="w3-button w3-xlarge w3-right" ng-click="bar = !bar"  style="background-color: #C74848 ;" >&#9776;</button>
-                  <div class="w3-container" style="background-color: #C74848 ;">
+                  <div class="w3-container" style="background-color: #C74848 ;" ng-click="viewProjectId(project._id)">
                     <h2>{{project.projectName}}</h2>
                   </div>
                 </div>
 
                 <h3 class="w3-bar-item  w3-hide-small" style="width:85px">{{$index+1}} 📃</h3>
-                <div class="w3-bar-item" ng-click="addTask(project._id)">
-                  <span class="w3-large">{{project.projectDisc}}</span><br>
+                <div class="w3-bar-item" ng-click="viewProjectId(project._id)">
+                  <span class="w3-large" >{{project.projectDisc}}</span><br>
 
                   <span class="badge badge-primary badge-pill">Tasks : {{project.tasks.length}}</span>
                 </div>
@@ -66,39 +84,7 @@
           </div>
         </div>
       </div>
-
     </div>
-
-    <h1> Projects page </h1>
-    <table class="table table-striped" >
-      <thead>
-        <tr>
-          <th style="font-family: Lobster">Index</th>
-          <th style="font-family: Lobster"> Project Name</th>         
-          <th style="font-family: Lobster">Project Description</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr>
-          <td></td>
-          <td><input name="project-name" class="form-control" placeholder="Type project name" ng-model="projectName" ></td>
-          <td><input name="project-desc" placeholder="Type project description" class="form-control" ng-model="projectDisc"></td>
-          <td>
-           <button class="btn btn-block btn-primary" ng-click="addproject()">add</button>
-         </td>
-       </tr>
-
-       <!-- projects are all our projects details in our dataBase-->
-       <tr ng-repeat = "project in projects" >
-        <td>{{$index+1}}.</td>
-        <td style="font-family: Lobster">{{project.projectName}}</td>
-        <td style="font-family: Lobster">{{project.projectDisc}}</td>
-        <td><button class="btn btn-block btn-info" ng-click="addTask(project._id)">Tasks</button></td>
-        <td><button class="btn btn-block btn-danger" ng-click="deleteProject(project)">Delete</button></td>
-        <!-- we used data-target to connect this button on Modal fadeout-->
-        <td><button class="btn btn-block btn-primary" ng-click="sendproj(project)" data-target="#myModalEdit" data-toggle="modal">Update</button></td>
-      </tr>
 
       <!-- Modal fadeout, this will appear for user when he press on update button-->
       <div class="modal fade" id="myModalEdit" role="dialog">

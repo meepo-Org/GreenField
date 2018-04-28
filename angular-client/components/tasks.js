@@ -1,11 +1,12 @@
-var app = angular.module('meepo3' );
+var app = angular.module('meepo3' );// task module
 
 app.component('tasks', {
 	templateUrl: '/templates/tasks.html'
 });
 
-app.controller('tasksCtrl', function ($scope, $http , $window){
 
+app.controller('tasksCtrl', function ($scope, $http,$window){
+	// get all existing tasks in db 
 	var get = function () {
 		var response = {
 			method: "GET",
@@ -17,12 +18,13 @@ app.controller('tasksCtrl', function ($scope, $http , $window){
 			console.log('error')
 		});
     };
-    get();
+    get();// get all existing tasks once tasks.html is rendered 
 
-    var post = function (data) {
+    //data parameter represent a task details which required to be added to db (tasks table) 
+        var post = function (data,url) {
 		var requestData = {
 			method: 'POST',
-			url: '/tasks',
+			url: url,
 			data: data
 		};
 		$http(requestData).then(function () {
@@ -31,6 +33,7 @@ app.controller('tasksCtrl', function ($scope, $http , $window){
 			console.log('error')
 		});	
  	}
+
 
  	$scope.addNewTask = function()
  	{
@@ -41,31 +44,26 @@ app.controller('tasksCtrl', function ($scope, $http , $window){
  			status: $scope.status
  		};
 
- 		post(newTask);
+ 		post(newTask,'/tasks');
+ 		$window.location.reload();
  	}
 
- 	$scope.deleteTask = function(data)
- 	{
- 		var obj = {
- 			method: 'POST',
-			url: '/deleteTask',
-			data: {description: data}
- 		};
+ 	$scope.deleteTask = function(data){
+		post({description: data},'/deleteTask')
+ 		$window.location.reload();//reload the page after press delete button
 
- 		$http(obj).then(function () {
-			console.log('success')
-		},function () {
-			console.log('error')
-		});	
  	}
 
-
+    // to render the old data to update form 
  	$scope.getOldTaskData = function(oldTask)
  	{
+ 		//getting the old data to display them in update window using ng-model = 'oldTask.fieldName'
  		$scope.oldTask = oldTask;
+ 		//saving the old data in a different object to send it to the server when updating task info
  		$scope.oldData = Object.assign({}, oldTask);
  	}
 
+ 	//same addNewTask function, but we need the old data to send them to server to update them and save the new changes
  	$scope.saveChanges = function(data) {
 
  		var updattedTask = {
@@ -77,18 +75,9 @@ app.controller('tasksCtrl', function ($scope, $http , $window){
  			},
  			oldData: $scope.oldData
  		};
+ 		post(updattedTask,'/updateTask');
+ 		$window.location.reload();
 
- 		var obj = {
- 			method: 'POST',
-			url: '/updateTask',
-			data:  updattedTask
- 		};
-
- 		$http(obj).then(function () {
-			console.log('success')
-		},function () {
-			console.log('error')
-		});	
  	}
  	$scope.Back = function () {
 	$window.location.href = 'app2.html'
