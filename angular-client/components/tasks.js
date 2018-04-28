@@ -1,4 +1,4 @@
-var app = angular.module('meepo3' );// task module
+var app = angular.module('mainTask' );// task module
 
 app.component('tasks', {
 	templateUrl: '/templates/tasks.html'

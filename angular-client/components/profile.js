@@ -1,4 +1,4 @@
-var app = angular.module('meepo2' );
+var app = angular.module('mainProject' );
 
 app.component('profile', {
 	templateUrl :'/templates/profile.html'
