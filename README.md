@@ -11,28 +11,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  >
   Projects management facilator.
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > 
   Individuals, companies and organizations which depend on projects to achieve the bussiness they work on.
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > 
   ProjectO helps team members developers to manage the projects they work on. once ProjectO started, a user can create an account and login using that account. In the home page, the user can create links for the projects he/she works on. Each project shall have name, description and tasks. By clicking on the project link, the system shall navigate the user to the tasks page related to that project. In tasks page, the user can add the tasks which must be done to complete the project. During task creation, the user shall specify task description, status (Not initiated yet, in progress or done), its complexity and a team member who is responsible to complete that task. Each task could be updated and deleted.
 ## Problem ##
-  > Describe the problem your product solves.
+  > 
   Many individuals, organaziations and companies depend on projects to achieve their bussiness. These projects include tasks which must be documented in details and tracked.
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > 
   Documented tasks in details help team members to track a project progress in an accurate way. Each tasks shall have a description, status, complexity and who is assigned to complete that task. These tasks details enable team members to track the prgress of the project they work on, so they can specify an good plan to achieve the project goals successfully.
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > 
   Having a good plan is your way to the success.
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > 
   Signup --> login --> Create Project --> Add tasks for that project --> Track project progress.
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > 
   ProjectO is a powerful tool which has helped our team to document, track project tasks in order to achieve our projects aims effeciently.
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
