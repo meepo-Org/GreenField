@@ -4,7 +4,7 @@ app.component('tasks', {
 	templateUrl: '/templates/tasks.html'
 });
 
-app.controller('tasksCtrl', function ($scope, $http){
+app.controller('tasksCtrl', function ($scope, $http , $window){
 
 	var get = function () {
 		var response = {
@@ -89,5 +89,9 @@ app.controller('tasksCtrl', function ($scope, $http){
 		},function () {
 			console.log('error')
 		});	
+ 	}
+ 	$scope.Back = function () {
+	$window.location.href = 'app2.html'
+ 		
  	}
 });

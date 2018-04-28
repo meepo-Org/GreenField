@@ -155,4 +155,3 @@ function gridView() {
         elements[i].style.width = "50%";
     }
 }
-
