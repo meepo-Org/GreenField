@@ -3,17 +3,6 @@ app.component('signup', {
 	templateUrl :'/templates/signup.html'
 });
 app.controller('signup' , function ($scope,$http ) {
-	  var get = function () {
-		var response={
-			method:"GET",
-			url : '/user'
-		}
-			$http(response).then(function (data) {
-				$scope.getter = data.data;
-			},function () {
-				console.log('error')
-			});
-	 }
 	 var post = function (data) {
 		var requestData = {
 			method :'POST',
@@ -26,24 +15,17 @@ app.controller('signup' , function ($scope,$http ) {
 			console.log('error')
 		});
 	 }
-  get();
-
+// send the new user info to the server in order to save it in database
   $scope.done = function () {
   post({
 		username : $scope.username ,
 		email : $scope.email,
 		password : $scope.password
-      })
-	get()
+      });
   }
-	//abdulhameed transfare to login page
-	$scope.log = function () {
-
-	}
-	//=======
 
 });
-
+// disable sign up button untill user fill all fields correctly 
 angular.module('meepo').directive('disableBtn',
 	function() {
 		return {
@@ -51,9 +33,9 @@ angular.module('meepo').directive('disableBtn',
 			link : function(scope, element, attrs) {
 				var $el = $(element);
 				var submitBtn = $el.find('button[type="submit"]');
-				var fName = attrs.name;
+				var username = attrs.name;
 				
-				scope.$watch(fName + '.$valid', function(val) {
+				scope.$watch(username + '.$valid', function(val) {
 					if (val) {
 						submitBtn.removeAttr('disabled');
 					} else {

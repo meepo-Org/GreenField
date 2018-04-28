@@ -74,7 +74,7 @@
           <td>{{$index+1}}.</td>
           <td style="font-family: Lobster">{{project.projectName}}</td>
           <td style="font-family: Lobster">{{project.projectDisc}}</td>
-          <td><button class="btn btn-block btn-info" ng-click="addTask(project._id)">Tasks</button></td>
+          <td><button class="btn btn-block btn-info" ng-click="viewProjectId(project._id)">Tasks</button></td>
           <td><button class="btn btn-block btn-danger" ng-click="deleteProject(project)">Delete</button></td>
     <!-- we used data-target to connect this button on Modal fadeout-->
           <td><button class="btn btn-block btn-primary" ng-click="sendproj(project)" data-target="#myModalEdit" data-toggle="modal">Update</button></td>
