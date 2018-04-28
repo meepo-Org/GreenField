@@ -34,5 +34,4 @@ Once the project moves into development, the press release can be used as a touc
 ## Customer Quote ##
   > 
   ProjectO is a powerful tool which has helped our team to document, track project tasks in order to achieve our projects aims effeciently.
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+
