@@ -1,4 +1,4 @@
-var app = angular.module('meepo' , ["ngRoute" ]);
+var app = angular.module('mainApp' , ["ngRoute" ]);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -19,7 +19,7 @@ app.config(function($routeProvider) {
     })
 })
 
-app2 = angular.module('meepo2' , ["ngRoute"]);
+app2 = angular.module('mainProject' , ["ngRoute"]);
 
 app2.config(['$routeProvider' , function($routeProvider) {
     $routeProvider
@@ -32,4 +32,4 @@ app2.config(['$routeProvider' , function($routeProvider) {
 
 }])
 
-var app3 = angular.module('meepo3' , []);
+var app3 = angular.module('mainTask' , []);
