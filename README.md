@@ -1,4 +1,4 @@
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/meepo-Org/GreenField.svg?columns=all)](https://waffle.io/meepo-Org/ProjectO)
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/meepo-Org/ProjectO.svg?columns=all)](https://waffle.io/meepo-Org/ProjectO)
 # ProjectO #
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
