@@ -1,5 +1,7 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/meepo-Org/ProjectO.svg?columns=all)](https://waffle.io/meepo-Org/ProjectO)
 # ProjectO #
+
+
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 There is an approach called "working backwards" that is widely used at Amazon. They work backwards from the customer, rather than starting with an idea for a product and trying to bolt customers onto it. While working backwards can be applied to any specific product decision, using this approach is especially important when developing new products or features.
@@ -9,7 +11,8 @@ If the press release is more than a page and a half, it is probably too long. Ke
 Oh, and I also like to write press-releases in what I call "Oprah-speak" for mainstream consumer products. Imagine you're sitting on Oprah's couch and have just explained the product to her, and then you listen as she explains it to her audience. That's "Oprah-speak", not "Geek-speak".
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
- 
+ ##heroku-website-link##
+ > https://manageprojects.herokuapp.com/#!/login
 ## Heading ##
   >
   Projects management facilator.
