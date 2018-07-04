@@ -9,10 +9,12 @@ ProjectO helps team members developers to manage the projects they work on. once
  
 ### Installing
  From the root directory, execute the following commands:
+ 
  `npm install`
  
 ## Deployment
- Run the following command to start the application running:
+Execute the following command to start the application running:
+ 
  `npm start`
  
 ## Built With
