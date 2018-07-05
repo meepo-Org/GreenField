@@ -1,4 +1,4 @@
-var app = angular.module('mainProject' );
+var app = angular.module('mainProject');
 
 app.component('profile', {
 	templateUrl :'/templates/profile.html'
@@ -6,8 +6,8 @@ app.component('profile', {
 
 app.controller('profile' , function ($scope , $http) {
 	  var get = function () {
-		var response={
-			method:"GET",
+		var response = {
+			method: 'GET',
 			url : '/user'
 		}
 			$http(response).then(function (data) {
