@@ -30,12 +30,12 @@ angular.module('meepo').directive('disableBtn',
 	function() {
 		return {
 			restrict : 'A',
-			link : function(scope, element, attrs) {
+			link : function (scope, element, attrs){
 				var $el = $(element);
 				var submitBtn = $el.find('button[type="submit"]');
 				var username = attrs.name;
 				
-				scope.$watch(username + '.$valid', function(val) {
+				scope.$watch(username + '.$valid', function (val){
 					if (val) {
 						submitBtn.removeAttr('disabled');
 					} else {
