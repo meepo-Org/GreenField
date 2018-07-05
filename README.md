@@ -16,15 +16,19 @@ ProjectO helps team members developers to manage the projects they work on. once
 Execute the following command to start the application running:
  
  `npm start`
- 
+
+## Deployment
+### heroku-website-link
+https://manageprojects.herokuapp.com/
+
 ## Built With
  - [AngularJS](https://docs.angularjs.org/)
  - [Node.js](https://nodejs.org)
  - [MongoDB](https://www.mongodb.com) && [Mongoose ODM](http://mongoosejs.com/docs/)
  
- ## Authors
+## Credits
+#### Project's authors are:
  - [Abdulhameed](https://github.com/abdulhameed89) - Team Leader
  - [Abdullatif](https://github.com/AbdullatifJamous891) - Team Member
  - [Qays](https://github.com/QaysTrad) - Scrum Master
  - [Shatha](https://github.com/ShSukkar) - Product Owner
-
